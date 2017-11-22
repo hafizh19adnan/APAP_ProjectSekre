@@ -1,0 +1,19 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+#banner{
+	background: url('../images/bg.jpg') no-repeat center fixed;
+	background-size: cover;
+	padding: 150px 0px 0px 0px;
+	height: 90vh;
+}
+#banner h3{
+	font-family: 'Montserrat';
+	color:#404040;
+	font-weight: bold;
+	font-size: 3.2em;
+}
+#banner h4{
+	font-family: 'Montserrat';
+	font-weight: bold;
+	font-size: 2.8em;
+
+}
