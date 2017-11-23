@@ -21,7 +21,4 @@ public class AppServiceDatabase implements AppService
 {
     @Autowired
     private AppMapper appMapper;
-
-
-
 }

@@ -18,10 +18,31 @@ public class AppController
 	
 	@RequestMapping("/")
 	public String index() {
-		return "home";
+		return "index";
 	}
+	
+	@RequestMapping("/dashboard")
+	public String dashboard() {
+		return "dashboard";
+	}
+	
 	@RequestMapping("/login")
 	public String login() {
 		return "login";
+	}
+	
+	@RequestMapping("/term")
+	public String term() {
+		return "term";
+	}
+	
+	@RequestMapping("/kelas")
+	public String kelas() {
+		return "kelas";
+	}
+	
+	@RequestMapping("/assignKurikulum")
+	public String assignKurikulum() {
+		return "kurikulum";
 	}
 }
