@@ -9,5 +9,5 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class KurikulumModel {
 	private int id;
-  
+	//model menunggu API
 }

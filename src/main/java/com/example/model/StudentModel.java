@@ -9,5 +9,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class StudentModel {
 	private int id;
+	//model menunggu API
   
 }
