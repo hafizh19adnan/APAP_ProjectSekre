@@ -71,7 +71,7 @@ public interface AppMapper
 	@Update("UPDATE kelas SET nama_kelas = #{nama_kelas}, id_matkul = #{id_matkul}, dosen = #{dosen}, ruangan = #{ruangan} WHERE id = #{id}")
 	void updateKelas (KelasModel kelas);
 	
-	//method sementara, nunggu api dari kurikulum
+//	method sementara, nunggu api dari kurikulum
 	@Select("SELECT * FROM matkul")
 	MatkulModel selectMatkul();
 
