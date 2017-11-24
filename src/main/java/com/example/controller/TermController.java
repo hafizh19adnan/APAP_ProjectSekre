@@ -22,7 +22,6 @@ public class TermController
     @Autowired
     TermService termDAO;
 
-
     @RequestMapping("/term/detail")
     public String view (Model model,
             @RequestParam(value = "id", required = false) int id)
