@@ -2,6 +2,8 @@ package com.example.model;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,13 +19,17 @@ public class TermModel {
     private String isiIrsStart;
     private String isiIrsEnd;
     private int termType;
+    
+    @JsonIgnore
     private String termString;
     
+    @JsonIgnore
     public String getTS()
     {
     	return termString;
     }
 	
+    @JsonIgnore
     public String getTermString() {
     	if(termType==1) {
     		this.termString = "Ganjil";
