@@ -22,7 +22,7 @@ public class TermRestController {
 		return term;
 	}
 	
-	@RequestMapping("/getTerm/")
+	@RequestMapping("/getAllTerm")
 	public List<TermModel> view() {
 		List<TermModel> terms = termService.selectAllTerms();
 		return terms;
