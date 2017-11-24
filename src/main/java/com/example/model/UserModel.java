@@ -23,25 +23,7 @@ public class UserModel
     private String id_kelurahan;
     private List<KelasModel> anggota_keluarga;
     
-    public void convertWNA() {
-    	for(int i=0;i<this.anggota_keluarga.size();i++) {
-    		if(this.anggota_keluarga.get(i).getIs_wni().equals("0")) {
-    			this.anggota_keluarga.get(i).setIs_wni("WNA");
-    		}else {
-    			this.anggota_keluarga.get(i).setIs_wni("WNI");
-    		}
-    	}
-    }
-    
-    public void convertGender() {
-    	for(int i=0;i<this.anggota_keluarga.size();i++) {
-    		if(this.anggota_keluarga.get(i).getJenis_kelamin().equals("0")) {
-    			this.anggota_keluarga.get(i).setJenis_kelamin("Laki-Laki");
-    		}else {
-    			this.anggota_keluarga.get(i).setJenis_kelamin("Perempuan");
-    		}
-    	}
-    }
+   
         
     
 }

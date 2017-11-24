@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+
 import com.example.model.TermModel;
 import com.example.service.TermService;
 
@@ -22,7 +23,7 @@ public class TermRestController {
 		return term;
 	}
 	
-	@RequestMapping("/getTerm/")
+	@RequestMapping("/getAllTerm")
 	public List<TermModel> view() {
 		List<TermModel> terms = termService.selectAllTerms();
 		return terms;
