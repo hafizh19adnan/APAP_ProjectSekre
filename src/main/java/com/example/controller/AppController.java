@@ -31,10 +31,10 @@ public class AppController
 		return "login";
 	}
 	
-	@RequestMapping("/term")
-	public String term() {
-		return "term";
-	}
+//	@RequestMapping("/term")
+//	public String term() {
+//		return "term";
+//	}
 	
 	@RequestMapping("/kelas")
 	public String kelas() {

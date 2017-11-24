@@ -48,78 +48,47 @@
 	</section>
 	<section id="main-content">
 		<div class="container">
-			<h2>Create Term</h2>
+			<h2>Update Term</h2>
 			<div class="card card-depth">
-				<form action="/term/add/submit" method="get">
+				<form action="/term/update/submit" method="get">
+					<div class="form-group">
+						<label for="id">ID Term</label> <input type="text"
+							name="id" readonly="true" th:value="${term.id}" class="form-control" />
+					</div>
 					<div class="form-group">
 						<label for="nomor">Nomor Term</label> <input type="text"
-							name="nomor" class="form-control" />
+							name="nomor" th:value="${term.nomor}" class="form-control" />
 					</div>
 					<div class="form-group">
 						<label for="termString">Jenis Term</label> <input type="text"
-							name="termString" class="form-control" />
+							name="termString" th:value="${term.termString}" class="form-control" />
 					</div>
 					<div class="row">
 						<div class="col-6">
 							<label for="tglIrsStart">Awal Term</label> <input type="date"
-								name="tglIrsStart" class="form-control" />
+								name="tglIrsStart" th:value="${term.tglIrsStart}" class="form-control" />
 						</div>
 						<div class="col-6">
 							<label for="tglIrsEnd">Akhir Term</label> <input type="date"
-								name="tglIrsEnd" class="form-control" />
+								name="tglIrsEnd" th:value="${term.tglIrsEnd}" class="form-control" />
 						</div>
 					</div>
 					<br />
 					<div class="row">
 						<div class="col-6">
 							<label for="isiIrsStart">Awal Pengisian IRS</label> <input
-								type="date" name="isiIrsStart" class="form-control" />
+								type="date" name="isiIrsStart" th:value="${term.isiIrsStart}" class="form-control" />
 						</div>
 						<div class="col-6">
 							<label for="isiIrsEnd">Akhir Pengisian IRS</label> <input
-								type="date" name="isiIrsEnd" class="form-control" />
+								type="date" name="isiIrsEnd" th:value="${term.isiIrsEnd}" class="form-control" />
 						</div>
 					</div>
 					<br /> <input type="submit" name="submit" class="btn btn-primary"
-						value=" Buat Term Baru" />
+						value=" Update Term" />
 				</form>
 			</div>
-			<br />
-			<h2>View All Term</h2>
-			<div class="card">
-
-				<table id="example" class="table table-striped table-bordered"
-					cellspacing="0" width="100%">
-					<thead>
-						<tr>
-							<th>No</th>
-							<th>Nomor Term</th>
-							<th>Jenis Term</th>
-							<th>Awal Pengisian IRS</th>
-							<th>Akhir Pengisian IRS</th>
-							<th>Awal Term</th>
-							<th>Akhir Term</th>
-							<th>Action</th>
-						</tr>
-					</thead>
-
-					<tbody>
-						<!-- <div th:each="product,iterationStatus: ${products}"> -->
-						<tr th:each="term,iterationStatus: ${terms}">
-							<td th:text="${iterationStatus.count}">Nomor</td>
-							<td th:text="${term.nomor}"></td>
-							<td th:text="${term.termString}"></td>
-							<td th:text="${term.isiIrsStart}"></td>
-							<td th:text="${term.isiIrsEnd}"></td>
-							<td th:text="${term.tglIrsStart}"></td>
-							<td th:text="${term.tglIrsEnd}"></td>
-							<td><a style="margin:0px 5px 0px 5px"
-								th:href="'/term/update/' + ${term.id}" class="btn btn-success">Edit</a><a
-								th:href="'/term/delete/' + ${term.id}" class="btn btn-danger">Delete</a></td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
+			<br />			
 		</div>
 	</section>
 
