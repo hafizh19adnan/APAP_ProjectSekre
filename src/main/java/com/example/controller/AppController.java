@@ -24,16 +24,27 @@ public class AppController
 	
 	@RequestMapping("/")
 	public String index() {
-		return "home";
+		return "index";
+	}
+	@RequestMapping("/dashboard")
+	public String dashboard() {
+		return "dashboard";
 	}
 	@RequestMapping("/login")
 	public String login() {
 		return "login";
 	}
-	
+	@RequestMapping("/kelas")
+	public String kelas() {
+		return "kelas";
+	}
 	@RequestMapping("/kelas/delete")
 	public void deleteKelas() {
 		
+	}
+	@RequestMapping("/assignKurikulum")
+	public String assignKurikulum() {
+		return "kurikulum";
 	}
 	
 	
