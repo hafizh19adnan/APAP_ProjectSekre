@@ -42,10 +42,10 @@ public class AppController
 	public void deleteKelas() {
 		
 	}
-	@RequestMapping("/assignKurikulum")
-	public String assignKurikulum() {
-		return "kurikulum";
-	}
+//	@RequestMapping("/assignKurikulum")
+//	public String assignKurikulum() {
+//		return "kurikulum";
+//	}
 	
 	
     @RequestMapping("/kelas/delete/{id}")

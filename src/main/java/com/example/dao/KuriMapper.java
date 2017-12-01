@@ -1,5 +1,5 @@
 package com.example.dao;
 
-public class KuriMapper {
+public interface KuriMapper {
 
 }
