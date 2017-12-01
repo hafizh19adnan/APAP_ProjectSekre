@@ -30,7 +30,7 @@
 	<!--Jumbotron Section-->
 	<section id="header">
 		<div class="container">
-			<h1>Menu Kurikulum</h1>
+			<h1>Kurikulum Perorangan</h1>
 			<a href="#">Dashboard / Kurikulum</a>
 		</div>
 	</section>
@@ -38,7 +38,37 @@
 		<div class="container">
 			<h2>Buat Kurikulum</h2>
 			<div class="card card-depth">
-				<form>
+				<form action="/assignKurikulum" method="POST">
+					
+					<div class="row">
+						<div class="col-6">
+							<label>Angkatan</label>
+							<select class="form-control">
+								<option>2017</option>
+								<option>2016</option>
+								<option>2015</option>
+								<option>2014</option>
+								<option>2013</option>
+								<option>2012</option>
+							</select>
+						</div>
+						<div class="col-6">
+							<label>Kurikulum</label>
+							<select class="form-control">
+								<option>Kurikulum 2016 Revisi</option>
+								<option>Kurikulum 2016</option>
+								<option>Kurikulum 2010</option>
+							</select>
+						</div>
+					</div>
+					<br/>
+					<input type="submit" name="submit" class="btn btn-primary" value="Atur Kurikulum" />
+				</form>
+			</div>
+			<br/>
+			<h2>Personal - Kurikulum</h2>
+			<div class="card card-depth">
+				<form action="/assignKurikulum" method="POST">
 					
 					<div class="row">
 						<div class="col-6">
