@@ -30,8 +30,7 @@ public class KelasRestController {
 	
 	
 	@RequestMapping("/api/getKelas/{id}")
-	public KelasModel getKelasByID (@PathVariable(value="id") String id)  {
-		
+	public KelasModel getKelasByID (@PathVariable(value="id") String id)  {	
 		KelasModel kelas = appService.getKelasById(id);
         return kelas; 
 	}
