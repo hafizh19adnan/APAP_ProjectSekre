@@ -20,11 +20,20 @@
 		</div>
 	</nav>
 	</header>	
-<div th:if = "${param.error}" >
-		Invalid username and password.
+	<div th:if = "${param.error}" >
+	
+	<div class="alert alert-danger alert-dismissable" style="margin-bottom:-20px;">
+	 <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+	 Invalid username and password.
+	</div>
+		
 	</div>
 	<div th:if = "${param.logout}" >
-		You have been logged out.
+	<div class="alert alert-success alert-dismissable"  style="margin-bottom:-20px;">
+	 <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+	  You have been logged out.
+	</div>
+		
 	</div>
 	<!--Jumbotron Section-->
 	<section id="jumbotron">

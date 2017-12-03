@@ -4,6 +4,8 @@ package com.example.controller;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -24,8 +26,19 @@ public class AppController
 	
 	@RequestMapping("/")
 	public String index() {
+		if(SecurityContextHolder.getContext().getAuthentication() != null &&  SecurityContextHolder.getContext().getAuthentication().isAuthenticated() && !(SecurityContextHolder.getContext().getAuthentication() 
+          instanceof AnonymousAuthenticationToken) ) {
+			return "redirect:dashboard";
+		}else {
+			return "index";
+		}
+	}
+	
+	@RequestMapping("/home")
+	public String home() {
 		return "index";
 	}
+	
 	@RequestMapping("/dashboard")
 	public String dashboard() {
 		return "dashboard";
