@@ -21,7 +21,7 @@ public class KuriController
 //	@Autowired
 //	KuriService KuriDAO;
 	
-	@RequestMapping("/assignKurikulum")
+	@RequestMapping("/assignkurikulum")
 	public String index(Model model, HttpServletRequest request) {
 		if(request.getMethod().equals("GET")){
 			return "kurikulum";
