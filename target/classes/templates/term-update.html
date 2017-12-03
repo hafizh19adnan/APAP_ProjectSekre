@@ -3,8 +3,8 @@
 <head>
 <title>Term | Dashboard Aplikasi Sekretariat</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
-<link rel="stylesheet" type="text/css" href="css/style.css" />
+<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="/css/style.css" />
 <link rel="stylesheet" type="text/css"
 	href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css" />
 </head>
@@ -43,12 +43,13 @@
 	<section id="header">
 		<div class="container">
 			<h1>Menu Term</h1>
-			<a href="#">Dashboard / Term</a>
+			<a href="#">Dashboard / Term / Update</a>
 		</div>
 	</section>
 	<section id="main-content">
 		<div class="container">
 			<h2>Update Term</h2>
+			<br/>
 			<div class="card card-depth">
 				<form action="/term/update/submit" method="get">
 					<div class="form-group">
@@ -60,8 +61,13 @@
 							name="nomor" th:value="${term.nomor}" class="form-control" />
 					</div>
 					<div class="form-group">
-						<label for="termString">Jenis Term</label> <input type="text"
-							name="termString" th:value="${term.termString}" class="form-control" />
+						<label for="termString">Jenis Term</label>
+							<select class="form-control" name="termString">
+							<option th:selected="${term.termString}=='Ganjil'">Ganjil</option>
+							<option th:selected="${term.termString}=='Genap'">Genap</option>
+							<option th:selected="${term.termString}=='Semester Pendek'">Semester Pendek</option>
+							
+						</select>
 					</div>
 					
 					<div class="row">

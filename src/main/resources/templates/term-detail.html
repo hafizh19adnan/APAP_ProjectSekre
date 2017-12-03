@@ -3,8 +3,8 @@
 <head>
 <title>Term | Dashboard Aplikasi Sekretariat</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
-<link rel="stylesheet" type="text/css" href="css/style.css" />
+<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="/css/style.css" />
 <link rel="stylesheet" type="text/css"
 	href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css" />
 </head>
@@ -49,13 +49,10 @@
 	<section id="main-content">
 		<div class="container">
 			<br />
-			<h3 class="text-center">Detail Term</h3>
+			<h3>Detail Term</h3>
 
 			<br></br>
 			<div class="row">
-				<div class="col">
-					<p></p>
-				</div>
 				<div class="col">
 					<p th:text="'Id Term'"></p>
 				</div>
@@ -68,50 +65,32 @@
 			</div>
 			<div class="row">
 				<div class="col">
-					<p></p>
-				</div>
-				<div class="col">
 					<p th:text="'Tahun Ajaran'"></p>
 				</div>
 				<div class="col">
 					<p th:text="${term.nomor}"></p>
 				</div>
-				<div class="col">
-					<p></p>
-				</div>
+				<div class="col"></div>
 			</div>
 			<div class="row">
-				<div class="col">
-					<p></p>
-				</div>
 				<div class="col">
 					<p th:text="'Awal Pengisian IRS'"></p>
 				</div>
 				<div class="col">
 					<p th:text="${term.isiIrsStart}"></p>
 				</div>
-				<div class="col">
-					<p></p>
-				</div>
+				<div class="col"></div>
 			</div>
 			<div class="row">
-				<div class="col">
-					<p></p>
-				</div>
 				<div class="col">
 					<p th:text="'Akhir Pengisian IRS'"></p>
 				</div>
 				<div class="col">
 					<p th:text="${term.isiIrsEnd}"></p>
 				</div>
-				<div class="col">
-					<p></p>
-				</div>
+				<div class="col"></div>
 			</div>
 			<div class="row">
-				<div class="col">
-					<p></p>
-				</div>
 				<div class="col">
 					<p th:text="'Awal Term'"></p>
 				</div>
@@ -124,9 +103,6 @@
 			</div>
 			<div class="row">
 				<div class="col">
-					<p></p>
-				</div>
-				<div class="col">
 					<p th:text="'Akhir Term'"></p>
 				</div>
 				<div class="col">
@@ -138,55 +114,11 @@
 			</div>
 			<div class="row">
 				<div class="col">
-					<p></p>
+					<a th:href="'/term/update/' + ${term.id}" class="btn btn-primary">Ubah Term   </a>
+					<a th:href="'/term/delete/' + ${term.id}" class="btn btn-danger">Hapus Term</a>
 				</div>
-				<div class="col">
-					<p></p>
-				</div>
-				<div class="col">
-					<p></p>
-				</div>
-				<div class="col">
-					<p></p>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col">
-					<p></p>
-				</div>
-				<div class="col">
-					<p></p>
-				</div>
-				<div class="col">
-					<p></p>
-				</div>
-				<div class="col">
-					<p></p>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col">
-					<p></p>
-				</div>
-				<div class="col">
-					<p></p>
-				</div>
-				<div class="col">
-					<p>
-						<a th:href="'/term/update/' + ${term.id}" class="btn btn-success">Edit</a>
-					</p>
-				</div>
-				<div class="col">
-					<p>
-						<a th:href="'/term/delete/' + ${term.id}" class="btn btn-success">Delete</a>
-					</p>
-				</div>
-				<div class="col">
-					<p></p>
-				</div>
-				<div class="col">
-					<p></p>
-				</div>
+				<div class="col"></div>
+								<div class="col"></div>				
 			</div>
 
 		</div>
