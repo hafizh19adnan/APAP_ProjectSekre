@@ -9,6 +9,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class LinkStudentKuriModel {
 	KurikulumModel kurikulum;
-	StudentModel student;
+	MahasiswaModel student;
 
 }
