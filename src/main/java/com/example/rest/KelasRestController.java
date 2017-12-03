@@ -12,14 +12,14 @@ import com.example.model.KelasModel;
 import com.example.service.AppService;
 
 @RestController
-@RequestMapping("/rest")
+@RequestMapping("/api")
 public class KelasRestController {
 	
 	@Autowired
 	AppService appService;
 	
 	
-	@RequestMapping("/api/getAllKelas")
+	@RequestMapping("/getAllKelas")
 	public List<KelasModel> getAll (Model model) {
 		
 		List<KelasModel> classes = appService.getAllKelas();
@@ -29,13 +29,10 @@ public class KelasRestController {
 	}
 	
 	
-	@RequestMapping("/api/getKelas/{id}")
+	@RequestMapping("/getKelas/{id}")
 	public KelasModel getKelasByID (@PathVariable(value="id") String id)  {	
 		KelasModel kelas = appService.getKelasById(id);
         return kelas; 
 	}
 	
-	
-	
-
 }
