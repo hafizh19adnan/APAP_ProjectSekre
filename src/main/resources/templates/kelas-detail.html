@@ -28,9 +28,9 @@
 							class="sr-only">(current)</span></a> <a
 							class="nav-item nav-link active" href="/kelas">Kelas <span
 							class="sr-only">(current)</span></a> <a
-							class="nav-item nav-link active" href="/kurikulum">Kurikulum
+							class="nav-item nav-link active" href="/assignkurikulum">Kurikulum
 							<span class="sr-only">(current)</span>
-						</a>						<a><form th:action = "@{/logout}" method = "post"><input class="btn btn-danger" type = "submit" value = "Sign Out"  />
+						</a><a><form th:action = "@{/logout}" method = "post"><input class="btn btn-danger" type = "submit" value = "Sign Out"  />
 					</form>
 					</a>
 
@@ -51,41 +51,28 @@
 	<section id="main-content">
 		<div class="container">
 			<br />
-			<h3 class="text-center">Detail Kelas</h3>
+			<h3>Detail Kelas</h3>
 
 			<br></br>
 			<div class="row">
-				<div class="col">
-					<p></p>
-				</div>
 				<div class="col">
 					<p th:text="'Id Kelas'"></p>
 				</div>
 				<div class="col">
 					<p th:text="${kelas.id}"></p>
 				</div>
-				<div class="col">
-					<p></p>
-				</div>
+				<div class="col"></div>
 			</div>
 			<div class="row">
-				<div class="col">
-					<p></p>
-				</div>
 				<div class="col">
 					<p th:text="'Mata Kuliah'"></p>
 				</div>
 				<div class="col">
 					<p th:text="${kelas.nama_matkul}"></p>
 				</div>
-				<div class="col">
-					<p></p>
-				</div>
+				<div class="col"></div>
 			</div>
 			<div class="row">
-				<div class="col">
-					<p></p>
-				</div>
 				<div class="col">
 					<p th:text="'Nama Dosen'"></p>
 				</div>
@@ -98,9 +85,6 @@
 			</div>
 			<div class="row">
 				<div class="col">
-					<p></p>
-				</div>
-				<div class="col">
 					<p th:text="'Hari'"></p>
 				</div>
 				<div class="col">
@@ -111,9 +95,6 @@
 				</div>
 			</div>
 			<div class="row">
-				<div class="col">
-					<p></p>
-				</div>
 				<div class="col">
 					<p th:text="'Jam'"></p>
 				</div>
@@ -126,54 +107,8 @@
 			</div>
 			<div class="row">
 				<div class="col">
-					<p></p>
-				</div>
-				<div class="col">
-					<p></p>
-				</div>
-				<div class="col">
-					<p></p>
-				</div>
-				<div class="col">
-					<p></p>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col">
-					<p></p>
-				</div>
-				<div class="col">
-					<p></p>
-				</div>
-				<div class="col">
-					<p></p>
-				</div>
-				<div class="col">
-					<p></p>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col">
-					<p></p>
-				</div>
-				<div class="col">
-					<p></p>
-				</div>
-				<div class="col">
-					<p>
-						<a th:href="'/kelas/update/' + ${kelas.id}" class="btn btn-success">Edit</a>
-					</p>
-				</div>
-				<div class="col">
-					<p>
-						<a th:href="'/kelas/delete/' + ${kelas.id}" class="btn btn-success">Delete</a>
-					</p>
-				</div>
-				<div class="col">
-					<p></p>
-				</div>
-				<div class="col">
-					<p></p>
+						<a th:href="'/kelas/update/' + ${kelas.id}" class="btn btn-primary">Ubah Kelas</a>
+						<a th:href="'/kelas/delete/' + ${kelas.id}" class="btn btn-danger">Hapus Kelas</a>
 				</div>
 			</div>
 
