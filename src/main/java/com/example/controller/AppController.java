@@ -64,15 +64,12 @@ public class AppController
     @RequestMapping("/kelas/delete/{id}")
     public void deleteKelas (Model model, @PathVariable(value = "id") String id)
     {
-    	  KelasModel kelas = appDAO.selectKelas(id);
-
+    	KelasModel kelas = appDAO.selectKelas(id);
           if (kelas != null) {
         	  appDAO.deleteKelas (id);
           } else {
               model.addAttribute ("message", "not-found");
-          }
-          
-        
+          }        
     }
     
     @RequestMapping("/kelas/update/{id}")
@@ -95,7 +92,7 @@ public class AppController
     }
     
     
-        @RequestMapping("/kelas/add")
+    @RequestMapping("/kelas/add")
     public String add (Model headerTitle)
     {
         return "form-add";
@@ -106,19 +103,10 @@ public class AppController
     public void addSubmit (@ModelAttribute KelasModel kelas)
     {
     	//sementara pake appDAO krn blm ada dr api nya
-    	MatkulModel matkul = appDAO.selectMatkul();
-    	
-    	
+    	MatkulModel matkul = appDAO.selectMatkul();	
     	String nama_matkul = matkul.getNamaMatkul();
     	kelas.setNama_matkul(nama_matkul);
         appDAO.createKelas(kelas);
     }
-    
-    
-
-     
-
-
-     
     
 }
