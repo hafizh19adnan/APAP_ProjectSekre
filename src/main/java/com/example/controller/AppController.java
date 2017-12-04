@@ -51,62 +51,6 @@ public class AppController
 	public String kelas() {
 		return "kelas";
 	}
-	@RequestMapping("/kelas/delete")
-	public void deleteKelas() {
-		
-	}
-//	@RequestMapping("/assignKurikulum")
-//	public String assignKurikulum() {
-//		return "kurikulum";
-//	}
 	
-	
-    @RequestMapping("/kelas/delete/{id}")
-    public void deleteKelas (Model model, @PathVariable(value = "id") String id)
-    {
-    	KelasModel kelas = appDAO.selectKelas(id);
-          if (kelas != null) {
-        	  appDAO.deleteKelas (id);
-          } else {
-              model.addAttribute ("message", "not-found");
-          }        
-    }
-    
-    @RequestMapping("/kelas/update/{id}")
-    public String updateKelas (Model model, @PathVariable(value = "id") String id)
-    {
-    	  KelasModel kelas = appDAO.selectKelas(id);
-    	  
-          if (kelas != null) {
-        	  appDAO.updateKelas (kelas);
-        	  return "form-update";
-          } else {
-              model.addAttribute ("message", "not-found");
-              return "not-found";
-          }
-    }
-    
-    @RequestMapping(value = "/kelas/update", method = RequestMethod.POST)
-    public void updateSubmit (@ModelAttribute KelasModel kelas) {
-         appDAO.updateKelas(kelas);     
-    }
-    
-    
-    @RequestMapping("/kelas/add")
-    public String add (Model headerTitle)
-    {
-        return "form-add";
-    }
-
-
-    @RequestMapping(value = "/kelas/add", method = RequestMethod.POST)
-    public void addSubmit (@ModelAttribute KelasModel kelas)
-    {
-    	//sementara pake appDAO krn blm ada dr api nya
-    	MatkulModel matkul = appDAO.selectMatkul();	
-    	String nama_matkul = matkul.getNamaMatkul();
-    	kelas.setNama_matkul(nama_matkul);
-        appDAO.createKelas(kelas);
-    }
     
 }
