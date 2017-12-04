@@ -9,6 +9,7 @@
 	<configs>
 	</configs>
 	<autoconfigs>
+		<config>java:com.example.Tugas1APAPApplication</config>
 	</autoconfigs>
 	<configSets>
 	</configSets>

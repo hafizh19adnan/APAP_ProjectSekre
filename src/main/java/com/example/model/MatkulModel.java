@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class MatkulModel
 {
-	private String idMatkul;
+	private int idMatkul;
 	private String kodeMatkul;
 	private String namaMatkul;
     private int jumlahSKS;

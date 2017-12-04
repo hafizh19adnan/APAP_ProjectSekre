@@ -18,12 +18,9 @@
 			    	<a class="nav-item nav-link active" href="/dashboard">Dashboard <span class="sr-only">(current)</span></a>
 			    	<a class="nav-item nav-link active" href="/term">Term <span class="sr-only">(current)</span></a>
 			    	<a class="nav-item nav-link active" href="/kelas">Kelas <span class="sr-only">(current)</span></a>
-			    	<a class="nav-item nav-link active" href="/assignkurikulum">Kurikulum <span class="sr-only">(current)</span></a>
-			    	<a>
-			      	<form th:action = "@{/logout}" method = "post">
-						<input class="btn btn-danger" type = "submit" value = "Sign Out"  />
-					</form>
-					</a>
+			    	<a class="nav-item nav-link active" href="/kurikulum">Kurikulum <span class="sr-only">(current)</span></a>
+			    	<a class="nav-item nav-link active" href="/logout">Keluar <span class="sr-only">(current)</span></a>
+			      
 			    </div>
 			</div>	
 		</div>
@@ -41,7 +38,7 @@
 		<div class="container">
 			<h2>Buat Kelas</h2>
 			<div class="card card-depth">
-				<form>
+				<form action="/kelas/add/submit" method="get">
 					<div class="form-group">
 						<label>Nama Kelas</label>
 						<input type="text" name="nomor_term" class="form-control"/>
@@ -90,117 +87,21 @@
 			        </thead>
 			        
 			        <tbody>
-			            <tr>
-			                <td>1</td>
-			                <td>APAP A</td>
-			                <td>APAP</td>
-			                <td>Samuel Louvan</td>
-			                <td>R. 2303</td>
-			                <td>Selasa<br/>Kamis</td>
-			                <td>08.00 - 10.00<br/>08.00 - 10.00</td>
-			                <td><a href="#" class="btn btn-success">Edit</a><a style="margin-left:10px;" href="#" class="btn btn-danger">Remove</a></td>
-			            </tr>
-			            <tr>
-			                <td>1</td>
-			                <td>APAP A</td>
-			                <td>APAP</td>
-			                <td>Samuel Louvan</td>
-			                <td>R. 2303</td>
-			                <td>Selasa<br/>Kamis</td>
-			                <td>08.00 - 10.00<br/>08.00 - 10.00</td>
-			                <td><a href="#" class="btn btn-success">Edit</a><a style="margin-left:10px;" href="#" class="btn btn-danger">Remove</a></td>
-			            </tr>
-			            <tr>
-			                <td>1</td>
-			                <td>APAP A</td>
-			                <td>APAP</td>
-			                <td>Samuel Louvan</td>
-			                <td>R. 2303</td>
-			                <td>Selasa<br/>Kamis</td>
-			                <td>08.00 - 10.00<br/>08.00 - 10.00</td>
-			                <td><a href="#" class="btn btn-success">Edit</a><a style="margin-left:10px;" href="#" class="btn btn-danger">Remove</a></td>
-			            </tr>
-			            <tr>
-			                <td>1</td>
-			                <td>APAP A</td>
-			                <td>APAP</td>
-			                <td>Samuel Louvan</td>
-			                <td>R. 2303</td>
-			                <td>Selasa<br/>Kamis</td>
-			                <td>08.00 - 10.00<br/>08.00 - 10.00</td>
-			                <td><a href="#" class="btn btn-success">Edit</a><a style="margin-left:10px;" href="#" class="btn btn-danger">Remove</a></td>
-			            </tr>
-			            <tr>
-			                <td>1</td>
-			                <td>APAP A</td>
-			                <td>APAP</td>
-			                <td>Samuel Louvan</td>
-			                <td>R. 2303</td>
-			                <td>Selasa<br/>Kamis</td>
-			                <td>08.00 - 10.00<br/>08.00 - 10.00</td>
-			                <td><a href="#" class="btn btn-success">Edit</a><a style="margin-left:10px;" href="#" class="btn btn-danger">Remove</a></td>
-			            </tr>
-			            <tr>
-			                <td>1</td>
-			                <td>APAP A</td>
-			                <td>APAP</td>
-			                <td>Samuel Louvan</td>
-			                <td>R. 2303</td>
-			                <td>Selasa<br/>Kamis</td>
-			                <td>08.00 - 10.00<br/>08.00 - 10.00</td>
-			                <td><a href="#" class="btn btn-success">Edit</a><a style="margin-left:10px;" href="#" class="btn btn-danger">Remove</a></td>
-			            </tr>
-			            <tr>
-			                <td>1</td>
-			                <td>APAP A</td>
-			                <td>APAP</td>
-			                <td>Samuel Louvan</td>
-			                <td>R. 2303</td>
-			                <td>Selasa<br/>Kamis</td>
-			                <td>08.00 - 10.00<br/>08.00 - 10.00</td>
-			                <td><a href="#" class="btn btn-success">Edit</a><a style="margin-left:10px;" href="#" class="btn btn-danger">Remove</a></td>
-			            </tr>
-			            <tr>
-			                <td>1</td>
-			                <td>APAP A</td>
-			                <td>APAP</td>
-			                <td>Samuel Louvan</td>
-			                <td>R. 2303</td>
-			                <td>Selasa<br/>Kamis</td>
-			                <td>08.00 - 10.00<br/>08.00 - 10.00</td>
-			                <td><a href="#" class="btn btn-success">Edit</a><a style="margin-left:10px;" href="#" class="btn btn-danger">Remove</a></td>
-			            </tr>
-			            <tr>
-			                <td>1</td>
-			                <td>APAP A</td>
-			                <td>APAP</td>
-			                <td>Samuel Louvan</td>
-			                <td>R. 2303</td>
-			                <td>Selasa<br/>Kamis</td>
-			                <td>08.00 - 10.00<br/>08.00 - 10.00</td>
-			                <td><a href="#" class="btn btn-success">Edit</a><a style="margin-left:10px;" href="#" class="btn btn-danger">Remove</a></td>
-			            </tr>
-			            <tr>
-			                <td>1</td>
-			                <td>APAP A</td>
-			                <td>APAP</td>
-			                <td>Samuel Louvan</td>
-			                <td>R. 2303</td>
-			                <td>Selasa<br/>Kamis</td>
-			                <td>08.00 - 10.00<br/>08.00 - 10.00</td>
-			                <td><a href="#" class="btn btn-success">Edit</a><a style="margin-left:10px;" href="#" class="btn btn-danger">Remove</a></td>
-			            </tr>
-			            <tr>
-			                <td>1</td>
-			                <td>APAP A</td>
-			                <td>APAP</td>
-			                <td>Samuel Louvan</td>
-			                <td>R. 2303</td>
-			                <td>Selasa<br/>Kamis</td>
-			                <td>08.00 - 10.00<br/>08.00 - 10.00</td>
-			                <td><a href="#" class="btn btn-success">Edit</a><a style="margin-left:10px;" href="#" class="btn btn-danger">Remove</a></td>
-			            </tr>
-			            			        </tbody>
+			          
+			            <tr th:each="kelas,iterationStatus: ${semuakelas}">
+							<td th:text="${iterationStatus.count}">Nomor</td>
+							<td th:text="${kelas.nama_kelas}"></td>
+							<td th:text="${kelas.nama_matkul}"></td>
+							<td th:text="${kelas.dosen}"></td>
+							<td th:text="${kelas.ruangan}"></td>
+							<td th:text="${kelas.hari}"></td>
+							<td th:text="${kelas.jam}"></td>
+							<td><a th:href="'/kelas/detail/' + ${kelas.id}"
+								class="btn btn-success">Detail</a>
+							</td>
+						</tr>
+			         
+			        </tbody>
 			    </table>
 			</div>
 		</div>
