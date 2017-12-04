@@ -141,18 +141,16 @@ public class KelasController {
     
     
 
-    
     @RequestMapping("/kelas/update/{id}")
     public String updateKelas (Model model, @PathVariable(value = "id") String id)
     {
     	  KelasModel kelas = kelasDAO.selectKelas(id);
     	  
           if (kelas != null) {
-        	  kelasDAO.updateKelas (kelas);
-        	  return "form-update";
+        	  model.addAttribute("kelas",kelas);
+        	  return "kelas-update";
           } else {
-              model.addAttribute ("message", "not-found");
-              return "not-found";
+              return "kelas-not-found";
           }
     }
     
