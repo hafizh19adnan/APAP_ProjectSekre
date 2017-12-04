@@ -7,8 +7,10 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class StudentModel {
-	private int id;
-	//model menunggu API
-  
+public class IdentitasModel {
+	private String universitas;
+	private String fakultas;
+	private String jurusan;
+	private String jenjang;
+	private int angkatan;
 }
