@@ -9,20 +9,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.model.KelasModel;
-import com.example.service.AppService;
+import com.example.service.KelasService;
 
 @RestController
 @RequestMapping("/api")
 public class KelasRestController {
 	
 	@Autowired
-	AppService appService;
+	KelasService kelasService;
 	
 	
 	@RequestMapping("/getAllKelas")
 	public List<KelasModel> getAll (Model model) {
 		
-		List<KelasModel> classes = appService.getAllKelas();
+		List<KelasModel> classes = kelasService.getAllKelas();
         model.addAttribute ("classes", classes);
 
         return classes;
@@ -30,9 +30,13 @@ public class KelasRestController {
 	
 	
 	@RequestMapping("/getKelas/{id}")
-	public KelasModel getKelasByID (@PathVariable(value="id") String id)  {	
-		KelasModel kelas = appService.getKelasById(id);
+	public KelasModel getKelasByID (@PathVariable(value="id") String id)  {
+		
+		KelasModel kelas = kelasService.getKelasById(id);
         return kelas; 
 	}
 	
+	
+	
+
 }

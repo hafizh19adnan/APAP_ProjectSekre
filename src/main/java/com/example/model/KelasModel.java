@@ -19,6 +19,8 @@ public class KelasModel
     private String dosen;
     private String ruangan;
 	private List<JadwalModel> jadwal_masuk;
+	private String hari;
+	private String jam;
     
     
   
