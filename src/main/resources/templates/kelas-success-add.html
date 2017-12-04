@@ -30,8 +30,10 @@
 							class="sr-only">(current)</span></a> <a
 							class="nav-item nav-link active" href="/kurikulum">Kurikulum
 							<span class="sr-only">(current)</span>
-						</a> <a class="nav-item nav-link active" href="/logout">Keluar <span
-							class="sr-only">(current)</span></a>
+						</a><a><form th:action = "@{/logout}" method = "post"><input class="btn btn-danger" type = "submit" value = "Sign Out"  />
+					</form>
+					</a>
+
 
 					</div>
 				</div>

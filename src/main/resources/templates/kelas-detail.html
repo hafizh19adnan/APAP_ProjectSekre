@@ -3,8 +3,8 @@
 <head>
 <title>Kelas | Dashboard Aplikasi Sekretariat</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
-<link rel="stylesheet" type="text/css" href="css/style.css" />
+<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="/css/style.css" />
 <link rel="stylesheet" type="text/css"
 	href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css" />
 </head>
@@ -30,8 +30,10 @@
 							class="sr-only">(current)</span></a> <a
 							class="nav-item nav-link active" href="/kurikulum">Kurikulum
 							<span class="sr-only">(current)</span>
-						</a> <a class="nav-item nav-link active" href="/logout">Keluar <span
-							class="sr-only">(current)</span></a>
+						</a>						<a><form th:action = "@{/logout}" method = "post"><input class="btn btn-danger" type = "submit" value = "Sign Out"  />
+					</form>
+					</a>
+
 
 					</div>
 				</div>
