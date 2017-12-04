@@ -1,4 +1,4 @@
-/*package com.example;
+package com.example;
 
 import javax.activation.DataSource;
 
@@ -32,4 +32,3 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 //		auth.jdbcAuthentication().dataSource(dataSource).usersByUsernameQuery("select username,password,enabled from users where username =? "). authoritiesByUsernameQuery( "select username, role from user_roles where username =? ");		
 //	}
 }
-*/
