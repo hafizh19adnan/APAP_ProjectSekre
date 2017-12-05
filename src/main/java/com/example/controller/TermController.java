@@ -91,7 +91,7 @@ public class TermController
     
     @RequestMapping("/term/add/submit")
     public String addSubmit (
-            @RequestParam(value = "nomor", required = false) String nomor,
+            @RequestParam(value = "tahunAjaran", required = false) String nomor,
             @RequestParam(value = "tglIrsStart", required = false) String tglIrsStart,
             @RequestParam(value = "tglIrsEnd", required = false) String tglIrsEnd,
             @RequestParam(value = "isiIrsStart", required = false) String isiIrsStart,

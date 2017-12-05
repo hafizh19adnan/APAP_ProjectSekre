@@ -21,8 +21,6 @@ public class KelasModel
 	private List<JadwalModel> jadwal_masuk;
 	private String hari;
 	private String jam;
-    
-    
-  
+    private int id_term; 
 
 }

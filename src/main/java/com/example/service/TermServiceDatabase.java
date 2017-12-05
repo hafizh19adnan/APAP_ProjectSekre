@@ -51,7 +51,7 @@ public class TermServiceDatabase implements TermService
     @Override
     public void updateTerm (TermModel term)
     {
-    	log.info(term.getNomor() + "-" + term.getTermType() + " updated");
+    	log.info(term.getTahunAjaran() + "-" + term.getTermType() + " updated");
     	termMapper.updateTerm(term);
     }
 

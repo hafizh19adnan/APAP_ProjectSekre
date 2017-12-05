@@ -92,6 +92,7 @@
 			                <th>Ruangan</th>
 			                <th>Hari</th>
 			                <th>Jam</th>
+			                <th>Term Id</th>
 			                <th>Action</th>
 			            </tr>
 			        </thead>
@@ -108,6 +109,7 @@
 								 <span th:text="${data}"></span>
 							</td>
 							<td th:text="${kelas.jam}"></td>
+							<td th:text="${kelas.id_term}"></td>
 							<td><a th:href="'/kelas/detail/' + ${kelas.id}"
 								class="btn btn-success">Detail</a>
 							</td>

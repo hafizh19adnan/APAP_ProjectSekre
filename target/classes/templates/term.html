@@ -55,8 +55,8 @@
 			<div class="card card-depth">
 				<form action="/term/add/submit" method="get">
 					<div class="form-group">
-						<label for="nomor">Nomor Term</label> <input type="text"
-							name="nomor" class="form-control" />
+						<label for="tahunAjaran">Tahun Ajaran</label> <input type="text"
+							name="tahunAjaran" class="form-control" />
 					</div>
 					<div class="form-group">
 						<label for="termString">Jenis Term:</label> <select
@@ -64,7 +64,6 @@
 							<option>Ganjil</option>
 							<option>Genap</option>
 							<option>Semester Pendek</option>
-							
 						</select>
 					</div>
 					
@@ -103,7 +102,7 @@
 					<thead>
 						<tr>
 							<th>No</th>
-							<th>Nomor Term</th>
+							<th>Tahun Ajaran</th>
 							<th>Jenis Term</th>
 							<th>Awal Pengisian IRS</th>
 							<th>Akhir Pengisian IRS</th>
@@ -117,7 +116,7 @@
 						<!-- <div th:each="term,iterationStatus: ${terms}"> -->
 						<tr th:each="term,iterationStatus: ${terms}">
 							<td th:text="${iterationStatus.count}">Nomor</td>
-							<td th:text="${term.nomor}"></td>
+							<td th:text="${term.tahunAjaran}"></td>
 							<td th:text="${term.termString}"></td>
 							<td th:text="${term.isiIrsStart}"></td>
 							<td th:text="${term.isiIrsEnd}"></td>

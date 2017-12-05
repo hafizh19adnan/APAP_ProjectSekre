@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class TermModel {
 	private Integer id;
-    private String nomor;
+    private String tahunAjaran;
     private String tglIrsStart;
     private String tglIrsEnd;
     private String isiIrsStart;
