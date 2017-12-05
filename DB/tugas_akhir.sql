@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 23, 2017 at 08:56 AM
+-- Generation Time: Dec 05, 2017 at 02:42 PM
 -- Server version: 10.1.22-MariaDB
 -- PHP Version: 7.1.4
 
@@ -66,32 +66,33 @@ CREATE TABLE `kelas` (
   `nama_kelas` varchar(50) NOT NULL,
   `id_matkul` int(11) NOT NULL,
   `dosen` varchar(30) NOT NULL,
-  `ruangan` varchar(20) NOT NULL
+  `ruangan` varchar(20) NOT NULL,
+  `id_term` int(11) NOT NULL,
+  `kode_kurikulum` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `kelas`
 --
 
-INSERT INTO `kelas` (`id`, `nama_kelas`, `id_matkul`, `dosen`, `ruangan`) VALUES
-(1, 'Sister A', 1, 'Harry Budi Santoso, Phd', 'R. 2303'),
-(2, 'Sister B', 1, 'Harry Budi Santoso, Phd', 'R. 2301'),
-(3, 'Sister C', 1, 'Harry Budi Santoso, Phd', 'R. 2302'),
-(4, 'APAP A', 2, 'Qorib Munajat', 'R. 2302'),
-(5, 'APAP B', 2, 'Samuel Louvan', 'R. 2301'),
-(6, 'APAP C', 2, 'Qorib Munajat', 'R. 2303'),
-(7, 'Anaperancis A', 3, 'Nur Fitriah', 'R. 2301'),
-(8, 'Anaperancis B', 3, 'Nur Fitriah', 'R. 2304'),
-(9, 'Anaperancis C', 3, 'Zainal Arifin', 'R. 2303'),
-(10, 'Manpro TI A', 3, 'Ave Pinem', 'R. 2305'),
-(11, 'Manpro TI B', 3, 'Indra Budi', 'R. 2303'),
-(12, 'DDP A', 3, 'Hadaiq Rolis S', 'R. 2302'),
-(13, 'DDP B', 3, 'Hadaiq Rolis S', 'R. 2301'),
-(14, 'DDP C', 3, 'Alfan Farizki', 'R. 2305'),
-(15, 'DDP D', 3, 'Denny', 'R. 2304'),
-(16, 'DDP E', 3, 'Lim Yohanes', 'R. 2302'),
-(17, 'PPSI A', 3, 'Iik Wilarso', 'R. 2301'),
-(18, 'PPSI B', 3, 'Joshua Suherman', 'R. 2307');
+INSERT INTO `kelas` (`id`, `nama_kelas`, `id_matkul`, `dosen`, `ruangan`, `id_term`, `kode_kurikulum`) VALUES
+(1, 'Sister A', 1, 'Harry Budi Santoso, Phd', 'R. 2303', 1, 'CSUI2015'),
+(2, 'Sister B', 1, 'Harry Budi Santoso, Phd', 'R. 2301', 1, 'CSUI2015'),
+(3, 'Sister C', 1, 'Harry Budi Santoso, Phd', 'R. 2302', 1, 'CSUI2015'),
+(4, 'APAP A', 2, 'Qorib Munajat', 'R. 2302', 1, 'CSUI2015'),
+(5, 'APAP B', 2, 'Samuel Louvan', 'R. 2301', 1, 'CSUI2015'),
+(6, 'APAP C', 2, 'Qorib Munajat', 'R. 2303', 1, 'CSUI2015'),
+(7, 'Anaperancis A', 3, 'Nur Fitriah', 'R. 2301', 1, 'CSUI2015'),
+(8, 'Anaperancis B', 3, 'Nur Fitriah', 'R. 2304', 1, 'CSUI2015'),
+(9, 'Anaperancis C', 3, 'Zainal Arifin', 'R. 2303', 1, 'CSUI2015'),
+(10, 'Manpro TI A', 3, 'Ave Pinem', 'R. 2305', 1, 'CSUI2015'),
+(11, 'Manpro TI B', 3, 'Indra Budi', 'R. 2303', 1, 'CSUI2015'),
+(12, 'DDP A', 3, 'Hadaiq Rolis S', 'R. 2302', 1, 'CSUI2015'),
+(13, 'DDP B', 3, 'Hadaiq Rolis S', 'R. 2301', 1, 'CSUI2015'),
+(14, 'DDP C', 3, 'Alfan Farizki', 'R. 2305', 1, 'CSUI2015'),
+(15, 'DDP D', 3, 'Denny', 'R. 2304', 1, 'CSUI2015'),
+(16, 'DDP E', 3, 'Lim Yohanes', 'R. 2302', 1, 'CSUI2015'),
+(17, 'PPSI A', 3, 'Iik Wilarso', 'R. 2301', 1, 'CSUI2015');
 
 -- --------------------------------------------------------
 
@@ -135,12 +136,31 @@ INSERT INTO `link_student_kuri` (`id_student`, `id_kuri`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `matkul`
+--
+
+CREATE TABLE `matkul` (
+  `idMatkul` varchar(20) NOT NULL,
+  `namaMatkul` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `matkul`
+--
+
+INSERT INTO `matkul` (`idMatkul`, `namaMatkul`) VALUES
+('1', 'Sistem Interaksi'),
+('2', 'Jaringan Komunikasi dan Data');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `term`
 --
 
 CREATE TABLE `term` (
   `id` int(11) NOT NULL,
-  `nomor` varchar(20) NOT NULL,
+  `tahun_ajaran` varchar(20) NOT NULL,
   `tgl_irs_start` date NOT NULL,
   `tgl_irs_end` date NOT NULL,
   `isi_irs_start` date NOT NULL,
@@ -152,7 +172,7 @@ CREATE TABLE `term` (
 -- Dumping data for table `term`
 --
 
-INSERT INTO `term` (`id`, `nomor`, `tgl_irs_start`, `tgl_irs_end`, `isi_irs_start`, `isi_irs_end`, `term_type`) VALUES
+INSERT INTO `term` (`id`, `tahun_ajaran`, `tgl_irs_start`, `tgl_irs_end`, `isi_irs_start`, `isi_irs_end`, `term_type`) VALUES
 (1, '2014/2015', '2015-02-02', '2015-06-01', '2015-02-02', '2015-02-13', 2),
 (2, '2015/2016', '2015-06-10', '2015-08-01', '2015-06-10', '2015-06-23', 3),
 (3, '2015/2016', '2015-08-30', '2015-12-20', '2015-08-30', '2015-09-10', 1),
@@ -161,8 +181,7 @@ INSERT INTO `term` (`id`, `nomor`, `tgl_irs_start`, `tgl_irs_end`, `isi_irs_star
 (6, '2016/2017', '2016-08-30', '2016-12-20', '2016-08-30', '2016-09-10', 1),
 (7, '2016/2017', '2017-02-02', '2017-06-01', '2017-02-02', '2017-02-13', 2),
 (8, '2017/2018', '2017-06-10', '2017-08-01', '2017-06-10', '2017-06-23', 3),
-(9, '2017/2018', '2017-08-30', '2017-12-20', '2017-08-30', '2017-09-10', 1),
-(10, '2017/2018', '2018-02-02', '2018-06-01', '2017-02-02', '2018-02-13', 2);
+(9, '2011/2018', '2017-08-30', '2017-12-20', '2017-08-30', '2017-09-10', 2);
 
 -- --------------------------------------------------------
 
@@ -182,11 +201,11 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `nik`, `username`, `password`) VALUES
-(1, '21390123213123', 'hafizh', '7189f7b76cb1610e499a1a5f046b7861'),
-(2, '21390123213124', 'may.iffah', 'e00cf25ad42683b3df678c61f42c6bda'),
-(3, '21390123213125', 'sandar', 'c84258e9c39059a89ab77d846ddab909'),
-(4, '21390123213126', 'amesh', '8073e5a8dbd05ea8984295c722c8ec05'),
-(5, '21390123213127', 'admin', '21232f297a57a5a743894a0e4a801fc3');
+(1, '21390123213123', 'hafizh', 'hafizh'),
+(2, '21390123213124', 'may.iffah', 'mayiffah'),
+(3, '21390123213125', 'sandar', 'sandar'),
+(4, '21390123213126', 'amesh', 'amesh'),
+(5, '21390123213127', 'admin', 'admin');
 
 --
 -- Indexes for dumped tables
@@ -202,7 +221,8 @@ ALTER TABLE `jadwal`
 -- Indexes for table `kelas`
 --
 ALTER TABLE `kelas`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_term` (`id_term`);
 
 --
 -- Indexes for table `link_student_kuri`
@@ -235,17 +255,27 @@ ALTER TABLE `jadwal`
 -- AUTO_INCREMENT for table `kelas`
 --
 ALTER TABLE `kelas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 --
 -- AUTO_INCREMENT for table `term`
 --
 ALTER TABLE `term`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;COMMIT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `kelas`
+--
+ALTER TABLE `kelas`
+  ADD CONSTRAINT `kelas_ibfk_1` FOREIGN KEY (`id_term`) REFERENCES `term` (`id`);
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

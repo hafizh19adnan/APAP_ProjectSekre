@@ -38,6 +38,28 @@ public interface KelasMapper {
     			many=@Many(select="getJadwalMasuk"))
     })
 	KelasModel getKelasById(String id);
+    
+    
+    @Select("select * from kelas where id_term = #{id_term}")
+    @Results(value = {
+   		@Result(property="id", column="id"),	
+    	@Result(property="jadwal_masuk", column="id",
+    			javaType = List.class,
+    			many=@Many(select="getJadwalMasuk"))
+    })
+	List<KelasModel> getAllKelasByIdTerm(String id_term);
+    
+    @Select("select * from term where tahun_ajaran = #{tahun_ajaran} and term_type = #{term_type}")
+    @Results(value = {
+			@Result(property="id", column="id"),
+			@Result(property="tahunAjaran", column="tahun_ajaran"),
+			@Result(property="tglIrsStart", column="tgl_irs_start"),
+			@Result(property="tglIrsEnd", column="tgl_irs_end"),
+			@Result(property="isiIrsStart", column="isi_irs_start"),
+			@Result(property="isiIrsEnd", column="isi_irs_end"),
+			@Result(property="termType", column="term_type")
+    })
+    TermModel getTermByTermType(String tahun_ajaran, String term_type);
 
 	
 	   @Select("select j.id, id_kelas, hari, jam_masuk, jam_keluar  " + 
