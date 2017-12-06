@@ -17,8 +17,8 @@
 			     <div class="navbar-nav">
 			    	<a class="nav-item nav-link active" href="/dashboard">Dashboard <span class="sr-only">(current)</span></a>
 			    	<a class="nav-item nav-link active" href="/term">Term <span class="sr-only">(current)</span></a>
-			    	<a class="nav-item nav-link active" href="/kelas">Kelas <span class="sr-only">(current)</span></a>
-			    	<a class="nav-item nav-link active" href="/assignkurikulum">Kurikulum <span class="sr-only">(current)</span></a>
+			    		<a class="nav-item nav-link active" href="/pilihKurikulum">Kelas <span class="sr-only">(current)</span></a>
+			    <a class="nav-item nav-link active" href="/assignkurikulum">Kurikulum <span class="sr-only">(current)</span></a>
 			    	<a><form th:action = "@{/logout}" method = "post"><input class="btn btn-danger" type = "submit" value = "Sign Out"  />
 					</form>
 					</a>
@@ -39,6 +39,22 @@
 	<section id="main-content">
 		<div class="container">
 			<h1>Pilih Kurikulum</h1>
+			<form action="/kelas/add/submit" method="get">
+					<div class="form-group">
+						<br/>
+						<select class="form-control">
+							<option>CSUI2015</option>
+							<option>1</option>
+							<option>1</option>
+							<option>1</option>
+							<option>1</option>
+							<option>1</option>
+						</select>
+						
+					</div>
+					
+					<input type="submit" name="submit" class="btn btn-primary" value="Pilih Kurikulum"/>
+				</form>
 		</div>
 	</section>
 

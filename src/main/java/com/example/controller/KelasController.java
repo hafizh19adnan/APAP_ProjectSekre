@@ -26,6 +26,11 @@ public class KelasController {
 	@Autowired
     KelasService kelasDAO;
 	
+	@RequestMapping("/pilihKurikulum")
+	public String chooseKurikulum(Model model) {
+		return "kelas-intro";
+	}
+	
 	@RequestMapping("/kelas")
 	public String view(Model model) {
 		
