@@ -21,17 +21,14 @@ public class KelasRestController {
 	
 	@RequestMapping("/getAllKelas")
 	public List<KelasModel> getAll (Model model) {
-		
 		List<KelasModel> classes = kelasService.getAllKelas();
         model.addAttribute ("classes", classes);
-
         return classes;
 	}
 	
 	
 	@RequestMapping("/getKelas/{id}")
 	public KelasModel getKelasByID (@PathVariable(value="id") String id)  {
-		
 		KelasModel kelas = kelasService.getKelasById(id);
         return kelas; 
 	}

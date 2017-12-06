@@ -105,9 +105,7 @@
 							<td th:text="${kelas.nama_matkul}"></td>
 							<td th:text="${kelas.dosen}"></td>
 							<td th:text="${kelas.ruangan}"></td>
-							<td th:each="data,iter:${kelas.hari}">
-								 <span th:text="${data}"></span>
-							</td>
+							<td th:text="${kelas.hari}"></td>
 							<td th:text="${kelas.jam}"></td>
 							<td th:text="${kelas.id_term}"></td>
 							<td><a th:href="'/kelas/detail/' + ${kelas.id}"
