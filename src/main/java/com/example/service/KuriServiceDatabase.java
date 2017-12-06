@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.dao.APIMapper;
 import com.example.dao.AppMapper;
 import com.example.dao.KuriMapper;
 import com.example.model.KurikulumModel;
@@ -18,11 +19,14 @@ public class KuriServiceDatabase implements KuriService{
 
 //	@Autowired
 //    private KuriMapper kuriMapper;
+	@Autowired
+	private APIMapper apiMapper;
 	
 	@Override
 	public List<KurikulumModel> allKurikulum() {
 		// TODO Auto-generated method stub
-		return null;
+		
+		return apiMapper.allKurikulum();
 	}
 
 	@Override
