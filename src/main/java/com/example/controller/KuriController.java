@@ -18,12 +18,13 @@ import com.example.service.KuriService;
 @Controller
 public class KuriController
 {
-//	@Autowired
-//	KuriService KuriDAO;
+	@Autowired
+	KuriService KuriDAO;
 	
 	@RequestMapping("/assignkurikulum")
 	public String index(Model model, HttpServletRequest request) {
 		if(request.getMethod().equals("GET")){
+			System.out.println(KuriDAO.allKurikulum());
 			return "kurikulum";
 			}
 		else if(request.getMethod().equals("POST")){
