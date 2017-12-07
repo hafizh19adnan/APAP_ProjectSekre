@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.model.KelasModel;
+import com.example.model.ResponseErrorModel;
+import com.example.model.ResponseModel;
 import com.example.service.KelasService;
 
 @RestController
@@ -20,20 +22,23 @@ public class KelasRestController {
 	
 	
 	@RequestMapping("/getAllKelas")
-	public List<KelasModel> getAll (Model model) {
+	public Object getAll (Model model) {
 		List<KelasModel> classes = kelasService.getAllKelas();
-        model.addAttribute ("classes", classes);
-        return classes;
+        if(classes==null || classes.size()==0) {
+        	return new ResponseErrorModel("404","Kelas Data Unavailable");
+        }else {
+        	return new ResponseModel("200","success",classes);
+        }
 	}
 	
 	
 	@RequestMapping("/getKelas/{id}")
-	public KelasModel getKelasByID (@PathVariable(value="id") String id)  {
+	public Object getKelasByID (@PathVariable(value="id") String id)  {
 		KelasModel kelas = kelasService.getKelasById(id);
-        return kelas; 
+        if(kelas==null) {
+        	return new ResponseErrorModel("404", "Kelas Data Not Found");
+        }else {
+        	return new ResponseModel("200","success",kelas);
+        } 
 	}
-	
-	
-	
-
 }
