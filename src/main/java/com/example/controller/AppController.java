@@ -1,5 +1,7 @@
 package com.example.controller;
 
+import java.util.List;
+
 //import java.util.List;
 
 
@@ -14,7 +16,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.example.model.KelasModel;
+import com.example.model.KurikulumModel;
 import com.example.model.MatkulModel;
+import com.example.service.APIMapperImpl;
 import com.example.service.AppService;
 
 
@@ -24,6 +28,9 @@ public class AppController
 	@Autowired
 	AppService appDAO;
 	
+	@Autowired
+	APIMapperImpl api;
+	
 	@RequestMapping("/")
 	public String index() {
 		if(SecurityContextHolder.getContext().getAuthentication() != null &&  SecurityContextHolder.getContext().getAuthentication().isAuthenticated() && !(SecurityContextHolder.getContext().getAuthentication() 
@@ -32,6 +39,13 @@ public class AppController
 		}else {
 			return "index";
 		}
+	}
+	
+	@RequestMapping("/dummy")
+	public String dummy(Model model) {
+		List<KurikulumModel> kurikulums = api.allKurikulum();
+		model.addAttribute("kurikulums",kurikulums);
+		return "dummy";
 	}
 	
 	@RequestMapping("/home")

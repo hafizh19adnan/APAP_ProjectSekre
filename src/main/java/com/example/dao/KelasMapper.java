@@ -79,10 +79,10 @@ public interface KelasMapper {
 	@Delete("DELETE FROM kelas WHERE id = #{id}") 
 	void deleteKelas(String id);
 	
-	@Insert("INSERT INTO kelas (nama_kelas, id_matkul, dosen, ruangan) VALUES (#{nama_kelas}, #{id_matkul}, #{dosen}, #{ruangan})")
+	@Insert("INSERT INTO kelas (id, nama_kelas, id_matkul, dosen, ruangan, id_term, kode_kurikulum) VALUES (null, #{nama_kelas}, #{id_matkul}, #{dosen}, #{ruangan}, #{id_term}, #{kode_kurikulum})")
     void createKelas (KelasModel kelas);
 	
-	@Insert("INSERT INTO jadwal (id_kelas, hari, jam_masuk, jam_keluar) VALUES (#{id_kelas}, #{hari}, #{jam_masuk}, #{jam_keluar})")
+	@Insert("INSERT INTO jadwal (id, id_kelas, hari, jam_masuk, jam_keluar) VALUES (null, #{id_kelas}, #{hari}, #{jam_masuk}, #{jam_keluar})")
     void createJadwal (JadwalModel jadwal);
 	
 	

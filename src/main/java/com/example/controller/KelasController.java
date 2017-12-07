@@ -1,5 +1,6 @@
 package com.example.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,8 +14,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.model.JadwalModel;
 import com.example.model.KelasModel;
+import com.example.model.KurikulumModel;
 import com.example.model.MatkulModel;
 import com.example.model.TermModel;
+import com.example.service.APIMapperImpl;
 import com.example.service.KelasService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -26,24 +29,42 @@ public class KelasController {
 	@Autowired
     KelasService kelasDAO;
 	
+	@Autowired
+	APIMapperImpl api;
+	
+	
 	@RequestMapping("/pilihKurikulum")
 	public String chooseKurikulum(Model model) {
+		List<KurikulumModel> kurikulum = api.allKurikulum();
+		model.addAttribute("kurikulum",kurikulum);
 		return "kelas-intro";
 	}
 	
-	@RequestMapping("/kelas")
-	public String view(Model model) {
-		
-		List<KelasModel> semuakelas = kelasDAO.getAllKelas();
-	// ini buat kalo udh ada apinya	
-	//	List<MatkulModel> semuamatkul = kelasDAO.getAllMatkul();
+	@RequestMapping("/kelas/{kode_kurikulum}")
+	public String view(Model model,
+            @PathVariable(value = "kode_kurikulum") String kode_kurikulum) {
 		
 		//yg ini sementara, dummy dibuat
-		List<MatkulModel> semuamatkul = kelasDAO.selectMatkul();
-		String nama_matkul = "";
+		List<MatkulModel> semuamatkul = new ArrayList<MatkulModel>();
+		List<KurikulumModel> semuakurikulum = api.allKurikulum();
+		for (int i =0; i < semuakurikulum.size(); i++) {
+			if (semuakurikulum.get(i).getKodeKurikulum().equals(kode_kurikulum)) {
+				semuamatkul = semuakurikulum.get(i).getListMataKuliah();
+			}
+		}
+		List<KelasModel> semuakelas = kelasDAO.getAllKelas();
+		List<KelasModel> kelasByKodeKurikulum = new ArrayList<KelasModel>();
 		
 		for (int i = 0; i < semuakelas.size(); i++) {
-			KelasModel kelasNow = semuakelas.get(i);			
+			if (semuakelas.get(i).getKode_kurikulum().equals(kode_kurikulum)) {
+				kelasByKodeKurikulum.add(semuakelas.get(i));
+			}
+		}
+		
+		String nama_matkul = "";
+		
+		for (int i = 0; i < kelasByKodeKurikulum.size(); i++) {
+			KelasModel kelasNow = kelasByKodeKurikulum.get(i);			
 			int idMatkul = kelasNow.getId_matkul();
 			for (int j = 0; j < semuamatkul.size(); j++) {
 				if (idMatkul == semuamatkul.get(j).getIdMatkul()) {
@@ -71,11 +92,11 @@ public class KelasController {
 			}
 			String hari = stringBuilderHari.toString();
 			String jam = stringBuilderJam.toString();
-			semuakelas.get(i).setHari(hari);
-			semuakelas.get(i).setJam(jam);
+			kelasByKodeKurikulum.get(i).setHari(hari);
+			kelasByKodeKurikulum.get(i).setJam(jam);
 		}
 		
-		model.addAttribute("semuakelas", semuakelas);
+		model.addAttribute("kelasByKodeKurikulum", kelasByKodeKurikulum);
 		return "kelas";
 	}
 	

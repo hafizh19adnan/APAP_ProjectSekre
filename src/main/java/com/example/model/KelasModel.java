@@ -22,6 +22,7 @@ public class KelasModel
 	private String hari;
 	private String jam;
     private int id_term;
+    private String kode_kurikulum;
 
 
 }
