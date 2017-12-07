@@ -1,14 +1,11 @@
-package com.example.service;
+package com.example.dao;
 
 import java.util.List;
 
 import com.example.model.KurikulumModel;
 import com.example.model.MahasiswaModel;
 
-public interface KuriService {
-
+public interface APIMapper {
 	List<KurikulumModel> allKurikulum();
 	List<MahasiswaModel> allMahasiswa();
-	List<String> allAngkatan(List<MahasiswaModel> listMahasiswa);
-	
 }
