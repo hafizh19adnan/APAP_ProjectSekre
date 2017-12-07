@@ -15,7 +15,6 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Service
 public class KelasServiceDatabase implements KelasService {
-
 	
 	 @Autowired
 	    private KelasMapper kelasMapper;
