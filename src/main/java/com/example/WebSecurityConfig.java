@@ -15,7 +15,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 	@Override
 	protected void configure(HttpSecurity http) throws Exception{
 		http.authorizeRequests().
-		antMatchers("/").permitAll().antMatchers("/css/*").permitAll().antMatchers("/img/*").permitAll().antMatchers("/js/*").permitAll().anyRequest().authenticated().and().formLogin().
+		antMatchers("/").permitAll().antMatchers("/css/*").permitAll().antMatchers("/api/*").permitAll().antMatchers("/img/*").permitAll().antMatchers("/js/*").permitAll().anyRequest().authenticated().and().formLogin().
 		loginPage("/login").permitAll().and().logout().permitAll();
 	}
 	
@@ -24,11 +24,4 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 		auth.inMemoryAuthentication().withUser("user").password("password").roles("USER");
 		auth.inMemoryAuthentication().withUser("admin").password("admin").roles("ADMIN");
 	}
-//	@Autowired
-//	javax.sql.DataSource dataSource;
-//
-//	@Autowired
-//	public void configAuthentication(AuthenticationManagerBuilder auth) throws Exception{
-//		auth.jdbcAuthentication().dataSource(dataSource).usersByUsernameQuery("select username,password,enabled from users where username =? "). authoritiesByUsernameQuery( "select username, role from user_roles where username =? ");		
-//	}
 }
