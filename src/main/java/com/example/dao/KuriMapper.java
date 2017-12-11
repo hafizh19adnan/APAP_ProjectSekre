@@ -28,7 +28,7 @@ public interface KuriMapper {
 	@Select("Select * from link_student_kuri")
 	List<LinkStudentKuriModel> allStudentKuri();
 	
-	@Select("Select COUNT(id_student), id_kuri, angkatan from link_student_kuri")
+	@Select("Select COUNT(id_student), id_kuri, angkatan from link_student_kuri GROUP BY angkatan")
 	@Results(value = {
 			@Result(property="kurikulum", column="id_kuri"),
     })

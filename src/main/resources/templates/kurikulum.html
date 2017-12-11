@@ -84,9 +84,9 @@
 			        
 			        <tbody th:each="angkatan,iterationStatus: ${angkatankuri}">
 			            <tr>
-			                <td th:value="${iterationStatus.count}">1</td>
-			                <td th:value="${angkatan.angkatan}">2017</td>
-			                <td th:value="${angkatan.kurikulum}">Kurikulum 2016 Revisi</td>
+			                <td th:text="${iterationStatus.count}"></td>
+			                <td th:text="${angkatan.angkatan}"></td>
+			                <td th:text="${angkatan.kurikulum}"></td>
 			            </tr>
 
 			        </tbody>

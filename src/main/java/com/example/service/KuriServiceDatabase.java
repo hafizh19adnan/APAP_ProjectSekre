@@ -83,7 +83,7 @@ public class KuriServiceDatabase implements KuriService{
 				toAssign.add(all.get(i));
 			}
 		}
-		if(checkIfExist(toAssign.get(1).getNpm())) {
+		if(checkIfExist(toAssign.get(0).getNpm())) {
 			
 			for (int i = 0; i < toAssign.size(); i++) {
 				kuriMapper.updateAssign(toAssign.get(i).getNpm(), kurikulum, toAssign.get(i).getTahunMasuk());
