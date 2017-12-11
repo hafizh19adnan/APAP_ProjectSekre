@@ -304,7 +304,10 @@ public class KelasController {
         kelasDAO.createKelas(kelas);
     }
     
-    
+    @RequestMapping(value="/pilihKurikulum")
+    public String pilihKurikulum() {
+    	return "kelas-intro";
+    }
     
     
 
