@@ -48,7 +48,6 @@ public class KelasController {
 			  @PathVariable(value = "kode_kurikulum") String kode_kurikulum) {
 		
 		List<KelasModel> semuakelas = kelasDAO.getAllKelas();
-		
 		//udh ada api getAllKurikulum
 		List<KurikulumModel> kurikulum = apiMapperImpl.allKurikulum();
 		KurikulumModel kurikulumNow = null;
@@ -112,6 +111,7 @@ public class KelasController {
 			kelasByKurikulum.get(i).setHari(hari);
 			kelasByKurikulum.get(i).setJam(jam);
 		}
+		System.out.println("-----------------------"+'\n'+semuakelas.size());
 		
 		model.addAttribute("semuakelas", kelasByKurikulum);
 		return "kelas";
