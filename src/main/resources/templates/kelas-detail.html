@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Kelas | Dashboard Aplikasi Sekretariat</title>
+<title>Term | Dashboard Aplikasi Sekretariat</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" />
 <link rel="stylesheet" type="text/css" href="/css/style.css" />
@@ -25,15 +25,16 @@
 						<a class="nav-item nav-link active" href="/dashboard">Dashboard
 							<span class="sr-only">(current)</span>
 						</a> <a class="nav-item nav-link active" href="/term">Term <span
-							class="sr-only">(current)</span></a> 
-							<a class="nav-item nav-link active" href="/pilihKurikulum">Kelas <span class="sr-only">(current)</span></a>
-			    
-							<a class="nav-item nav-link active" href="/assignkurikulum">Kurikulum
+							class="sr-only">(current)</span></a> <a
+							class="nav-item nav-link active" href="/kelas">Kelas <span
+							class="sr-only">(current)</span></a> <a
+							class="nav-item nav-link active" href="/assignkurikulum">Kurikulum
 							<span class="sr-only">(current)</span>
-						</a><a><form th:action = "@{/logout}" method = "post"><input class="btn btn-danger" type = "submit" value = "Sign Out"  />
+						</a> <a>
+			      	<form th:action = "@{/logout}" method = "post">
+						<input class="btn btn-danger" type = "submit" value = "Sign Out"  />
 					</form>
 					</a>
-
 
 					</div>
 				</div>
@@ -44,40 +45,60 @@
 	<!--Jumbotron Section-->
 	<section id="header">
 		<div class="container">
-			<h1>Menu Kelas</h1>
-			<a href="#">Dashboard / Kelas / Detail</a>
+			<h1>Menu Term</h1>
+			<a href="#">Dashboard / Term / Detail</a>
 		</div>
 	</section>
 	<section id="main-content">
 		<div class="container">
 			<br />
-			<h3>Detail Kelas</h3>
+			<h3>Detail Term</h3>
 
 			<br></br>
 			<div class="row">
 				<div class="col">
-					<p th:text="'Id Kelas'"></p>
+					<p th:text="'Id Term'"></p>
 				</div>
 				<div class="col">
-					<p th:text="${kelas.id}"></p>
+					<p th:text="${term.id}"></p>
+				</div>
+				<div class="col">
+					<p></p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col">
+					<p th:text="'Tahun Ajaran'"></p>
+				</div>
+				<div class="col">
+					<p th:text="${term.tahunAjaran}"></p>
 				</div>
 				<div class="col"></div>
 			</div>
 			<div class="row">
 				<div class="col">
-					<p th:text="'Mata Kuliah'"></p>
+					<p th:text="'Awal Pengisian IRS'"></p>
 				</div>
 				<div class="col">
-					<p th:text="${kelas.nama_matkul}"></p>
+					<p th:text="${term.isiIrsStart}"></p>
 				</div>
 				<div class="col"></div>
 			</div>
 			<div class="row">
 				<div class="col">
-					<p th:text="'Nama Dosen'"></p>
+					<p th:text="'Akhir Pengisian IRS'"></p>
 				</div>
 				<div class="col">
-					<p th:text="${kelas.dosen}"></p>
+					<p th:text="${term.isiIrsEnd}"></p>
+				</div>
+				<div class="col"></div>
+			</div>
+			<div class="row">
+				<div class="col">
+					<p th:text="'Awal Term'"></p>
+				</div>
+				<div class="col">
+					<p th:text="${term.tglIrsStart}"></p>
 				</div>
 				<div class="col">
 					<p></p>
@@ -85,21 +106,10 @@
 			</div>
 			<div class="row">
 				<div class="col">
-					<p th:text="'Hari'"></p>
+					<p th:text="'Akhir Term'"></p>
 				</div>
 				<div class="col">
-					<p th:text="${kelas.hari}"></p>
-				</div>
-				<div class="col">
-					<p></p>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col">
-					<p th:text="'Jam'"></p>
-				</div>
-				<div class="col">
-					<p th:text="${kelas.jam}"></p>
+					<p th:text="${term.tglIrsEnd}"></p>
 				</div>
 				<div class="col">
 					<p></p>
@@ -107,9 +117,11 @@
 			</div>
 			<div class="row">
 				<div class="col">
-						<a th:href="'/kelas/update/' + ${kelas.id}" class="btn btn-primary">Ubah Kelas</a>
-						<a th:href="'/kelas/delete/' + ${kelas.id}" class="btn btn-danger">Hapus Kelas</a>
+					<a th:href="'/term/update/' + ${term.id}" class="btn btn-primary">Ubah Term   </a>
+					<a th:href="'/term/delete/' + ${term.id}" class="btn btn-danger">Hapus Term</a>
 				</div>
+				<div class="col"></div>
+								<div class="col"></div>				
 			</div>
 
 		</div>

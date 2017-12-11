@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.dao.KelasMapper;
+import com.example.model.JadwalModel;
 import com.example.model.KelasModel;
 import com.example.model.MatkulModel;
 import com.example.model.TermModel;
@@ -15,6 +16,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Service
 public class KelasServiceDatabase implements KelasService {
+
 	
 	 @Autowired
 	    private KelasMapper kelasMapper;
@@ -66,5 +68,24 @@ public class KelasServiceDatabase implements KelasService {
 		public List<MatkulModel> selectMatkul() {
 			log.info("select matkul sementaraaa");
 			return kelasMapper.selectMatkul();
+		}
+
+		@Override
+		public KelasModel selectKelasByNewest() {
+			log.info("select kelas by biggest id {}");
+			return kelasMapper.selectKelasByNewest();
+		}
+
+		@Override
+		public void createJadwal(JadwalModel jadwal) {
+			log.info("create jadwal");
+			kelasMapper.createJadwal(jadwal);
+			
+		}
+
+		@Override
+		public KelasModel getKelasByKuriTerm(String kodeKurikulum, String nama_term) {
+			// TODO Auto-generated method stub
+			return null;
 		}
 }

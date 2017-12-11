@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class KelasModel
 {
-	private int id;
+	private Integer id;
 	private int id_matkul;
 	private String nama_kelas;
 	private String nama_matkul;
@@ -22,7 +22,7 @@ public class KelasModel
 	private String hari;
 	private String jam;
     private int id_term;
+    private String nama_term;
     private String kode_kurikulum;
-
 
 }

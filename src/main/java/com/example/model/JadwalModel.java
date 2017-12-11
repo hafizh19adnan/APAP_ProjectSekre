@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class JadwalModel {
-	private int id;
+	private Integer id;
 	private int id_kelas;
 	private String hari;
 	private String jam_masuk;

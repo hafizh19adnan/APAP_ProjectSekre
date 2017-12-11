@@ -17,8 +17,8 @@
 			     <div class="navbar-nav">
 			    	<a class="nav-item nav-link active" href="/dashboard">Dashboard <span class="sr-only">(current)</span></a>
 			    	<a class="nav-item nav-link active" href="/term">Term <span class="sr-only">(current)</span></a>
-			    		<a class="nav-item nav-link active" href="/pilihKurikulum">Kelas <span class="sr-only">(current)</span></a>
-			    <a class="nav-item nav-link active" href="/assignkurikulum">Kurikulum <span class="sr-only">(current)</span></a>
+			    	<a class="nav-item nav-link active" href="/kelas">Kelas <span class="sr-only">(current)</span></a>
+			    	<a class="nav-item nav-link active" href="/assignkurikulum">Kurikulum <span class="sr-only">(current)</span></a>
 			    	<a><form th:action = "@{/logout}" method = "post"><input class="btn btn-danger" type = "submit" value = "Sign Out"  />
 					</form>
 					</a>
@@ -43,31 +43,43 @@
 				<form action="/kelas/add/submit" method="get">
 					<div class="form-group">
 						<label>Nama Kelas</label>
-						<input type="text" name="nomor_term" class="form-control"/>
+						<input type="text" name="nama_kelas" class="form-control" required="true"/>
 					</div>
 					<div class="form-group">
 						<label>Mata Kuliah</label>
-						<input type="text" name="nomor_term" class="form-control"/>
+						<input type="text" name="nama_matkul" class="form-control" required="true"/>
+					</div>
+					<div class="form-group">
+						<label>Tahun Ajaran</label>
+						<select class="form-control">
+							<option th:each="term, iterationsStatus:${term}" th:text="${term.tahunAjaran}"  th:value="${term.id}"></option>
+						</select>
 					</div>
 					<div class="form-group">
 						<label>Nama Dosen</label>
-						<input type="text" name="nomor_term" class="form-control"/>
+						<input required="true" type="text" name="nama_dosen" class="form-control"/>
 					</div>
+					
+					<div class="form-group">
+						<label>Term</label>
+						<input type="text" required="true" name="id_term" class="form-control"/>
+					</div>
+					
 					<span id="counter" style="display:none">1</span>
 					<div id="add-jadwal">
 						<h5>Jadwal 1</h5><hr/>
 						<div class="form-group">
 							<label>Hari</label>
-							<input type="text" name="nomor_term" class="form-control"/>
+							<input type="text" name="hari" required="true" class="form-control"/>
 						</div>
 						<div class="row">
 							<div class="col-6">
-								<label>Jam Mulai</label>
-								<input type="time" name="nomor_term" class="form-control"/>	
+								<label>Jam Masuk</label>
+								<input type="time" name="jam_masuk" required="true" class="form-control"/>	
 							</div>
 							<div class="col-6">
-								<label>Jam Selesai</label>
-								<input type="time" name="nomor_term" class="form-control"/>
+								<label>Jam Keluar</label>
+								<input type="time" name="jam_keluar" required="true" class="form-control"/>
 							</div>
 						</div>
 					</div>
@@ -92,7 +104,7 @@
 			                <th>Ruangan</th>
 			                <th>Hari</th>
 			                <th>Jam</th>
-			                <th>Term Id</th>
+			                <th>Term</th>
 			                <th>Action</th>
 			            </tr>
 			        </thead>
@@ -107,7 +119,7 @@
 							<td th:text="${kelas.ruangan}"></td>
 							<td th:text="${kelas.hari}"></td>
 							<td th:text="${kelas.jam}"></td>
-							<td th:text="${kelas.id_term}"></td>
+							<td th:text="${kelas.nama_term}"></td>
 							<td><a th:href="'/kelas/detail/' + ${kelas.id}"
 								class="btn btn-success">Detail</a>
 							</td>

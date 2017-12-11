@@ -12,13 +12,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.example.dao.KelasDAO;
 import com.example.model.JadwalModel;
 import com.example.model.KelasModel;
 import com.example.model.KurikulumModel;
 import com.example.model.MatkulModel;
 import com.example.model.TermModel;
-import com.example.service.APIMapperImpl;
 import com.example.service.KelasService;
+import com.example.service.TermService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -30,46 +31,60 @@ public class KelasController {
     KelasService kelasDAO;
 	
 	@Autowired
-	APIMapperImpl api;
+	KelasDAO kelasDAOImpl;
 	
+	@Autowired
+	TermService termDAO;
 	
-	@RequestMapping("/pilihKurikulum")
-	public String chooseKurikulum(Model model) {
-		List<KurikulumModel> kurikulum = api.allKurikulum();
-		model.addAttribute("kurikulum",kurikulum);
-		return "kelas-intro";
-	}
-	
-	@RequestMapping("/kelas/{kode_kurikulum}")
-	public String view(Model model,
-            @PathVariable(value = "kode_kurikulum") String kode_kurikulum) {
+	@RequestMapping("/kelas")
+	public String view(Model model, Model modelMatkul, Model modelTerm,
+			@RequestParam(value = "kode_kurikulum1", required = false) String kode_kurikulum1) {
 		
-		//yg ini sementara, dummy dibuat
-		List<MatkulModel> semuamatkul = new ArrayList<MatkulModel>();
-		List<KurikulumModel> semuakurikulum = api.allKurikulum();
-		for (int i =0; i < semuakurikulum.size(); i++) {
-			if (semuakurikulum.get(i).getKodeKurikulum().equals(kode_kurikulum)) {
-				semuamatkul = semuakurikulum.get(i).getListMataKuliah();
+		//nanti dapet dari page pilih kurikulum
+		//ini sementara dulu
+		String kode_kurikulum = "FTUI2012";
+		
+		
+		List<KelasModel> semuakelas = kelasDAO.getAllKelas();
+		
+		//udh ada api getAllKurikulum
+		List<KurikulumModel> kurikulum = kelasDAOImpl.selectAllKurikulum();
+		KurikulumModel kurikulumNow = null;
+		
+		for (int i = 0; i < kurikulum.size(); i++) {
+			if (kurikulum.get(i).getKodeKurikulum().equals(kode_kurikulum)) {
+				kurikulumNow = kurikulum.get(i);
 			}
 		}
-		List<KelasModel> semuakelas = kelasDAO.getAllKelas();
-		List<KelasModel> kelasByKodeKurikulum = new ArrayList<KelasModel>();
+		
+		List<MatkulModel> MatkulByKurikulum = kurikulumNow.getListMataKuliah();
+		modelMatkul.addAttribute("matkul", MatkulByKurikulum);
+		List<TermModel> allTerm = termDAO.selectAllTerms();
+		modelTerm.addAttribute("term", allTerm);
+		
+		//ini kalo udh ada kode kurikulum
+		List<KelasModel> kelasByKurikulum = new ArrayList<KelasModel>();
 		
 		for (int i = 0; i < semuakelas.size(); i++) {
 			if (semuakelas.get(i).getKode_kurikulum().equals(kode_kurikulum)) {
-				kelasByKodeKurikulum.add(semuakelas.get(i));
+				kelasByKurikulum.add(semuakelas.get(i));
 			}
 		}
 		
 		String nama_matkul = "";
 		
-		for (int i = 0; i < kelasByKodeKurikulum.size(); i++) {
-			KelasModel kelasNow = kelasByKodeKurikulum.get(i);			
+		for (int i = 0; i < kelasByKurikulum.size(); i++) {
+			KelasModel kelasNow = kelasByKurikulum.get(i);	
+			TermModel term = termDAO.selectTerm(kelasNow.getId_term());
+	    	 String tahun_term = term.getTahunAjaran();
+	    	 String jenis_term = Integer.toString(term.getTermType());
+	    	 String nama_term = tahun_term +"-"+jenis_term;
+	    	 kelasByKurikulum.get(i).setNama_term(nama_term);
 			int idMatkul = kelasNow.getId_matkul();
-			for (int j = 0; j < semuamatkul.size(); j++) {
-				if (idMatkul == semuamatkul.get(j).getIdMatkul()) {
-					nama_matkul = semuamatkul.get(j).getNamaMatkul();
-					semuakelas.get(i).setNama_matkul(nama_matkul);
+			for (int j = 0; j < MatkulByKurikulum.size(); j++) {
+				if (idMatkul == MatkulByKurikulum.get(j).getIdMatkul()) {
+					nama_matkul = MatkulByKurikulum.get(j).getNamaMatkul();
+					kelasByKurikulum.get(i).setNama_matkul(nama_matkul);
 				}
 			}
 			
@@ -85,18 +100,18 @@ public class KelasController {
 				
 				if (k+1 !=jadwal.size()) {
 					//tambah enter
-					stringBuilderHari.append("\n");
-					stringBuilderJam.append("\n");
+					stringBuilderHari.append("||");
+					stringBuilderJam.append("||");
 					
 				}
 			}
 			String hari = stringBuilderHari.toString();
 			String jam = stringBuilderJam.toString();
-			kelasByKodeKurikulum.get(i).setHari(hari);
-			kelasByKodeKurikulum.get(i).setJam(jam);
+			kelasByKurikulum.get(i).setHari(hari);
+			kelasByKurikulum.get(i).setJam(jam);
 		}
 		
-		model.addAttribute("kelasByKodeKurikulum", kelasByKodeKurikulum);
+		model.addAttribute("semuakelas", kelasByKurikulum);
 		return "kelas";
 	}
 	
@@ -107,15 +122,33 @@ public class KelasController {
 	            @PathVariable(value = "id") String id)
 	    {
 	        KelasModel kelas = kelasDAO.getKelasById(id);
+	        
 
 	        if (kelas != null) {
-	        	//yg ini sementara, dummy dibuat
-	    		List<MatkulModel> semuamatkul = kelasDAO.selectMatkul();
+	        	TermModel term = termDAO.selectTerm(kelas.getId_term());
+		    	 String tahun_term = term.getTahunAjaran();
+		    	 String jenis_term = Integer.toString(term.getTermType());
+		    	 String nama_term = tahun_term +"-"+jenis_term;
+		    	 kelas.setNama_term(nama_term);
+	        	String kode_kurikulum = kelas.getKode_kurikulum();
+	        	//udh ada api getAllKurikulum
+	    		List<KurikulumModel> kurikulum = kelasDAOImpl.selectAllKurikulum();
+	    		KurikulumModel kurikulumNow = null;
+	    		
+	    		for (int i = 0; i < kurikulum.size(); i++) {
+	    			if (kurikulum.get(i).getKodeKurikulum().equals(kode_kurikulum)) {
+	    				kurikulumNow = kurikulum.get(i);
+	    			}
+	    		}
+	    		
+	    		List<MatkulModel> MatkulByKurikulum = kurikulumNow.getListMataKuliah();
+	    		
+	    		
 	    		String nama_matkul = "";
 	    		int idMatkul = kelas.getId_matkul();
-				for (int j = 0; j < semuamatkul.size(); j++) {
-					if (idMatkul == semuamatkul.get(j).getIdMatkul()) {
-						nama_matkul = semuamatkul.get(j).getNamaMatkul();
+				for (int j = 0; j < MatkulByKurikulum.size(); j++) {
+					if (idMatkul == MatkulByKurikulum.get(j).getIdMatkul()) {
+						nama_matkul = MatkulByKurikulum.get(j).getNamaMatkul();
 						kelas.setNama_matkul(nama_matkul);
 					}
 				}
@@ -162,18 +195,43 @@ public class KelasController {
               model.addAttribute ("id", id);
               return "kelas-not-found";
           }
+          
+          //sementara, kalo kelas diapus, jadwal ttp ada ya
+          //solusi: pake FK di DB
      
     }
     
     
 
     @RequestMapping("/kelas/update/{id}")
-    public String updateKelas (Model model, @PathVariable(value = "id") String id)
+    public String updateKelas (Model model, Model modelMatkul, Model modelTerm, @PathVariable(value = "id") String id)
     {
-    	  KelasModel kelas = kelasDAO.selectKelas(id);
+    	  KelasModel kelas = kelasDAO.getKelasById(id);
+    	  String kode_kurikulum = kelas.getKode_kurikulum();
+    	//udh ada api getAllKurikulum
+  		List<KurikulumModel> kurikulum = kelasDAOImpl.selectAllKurikulum();
+  		KurikulumModel kurikulumNow = null;
+  		
+  		for (int i = 0; i < kurikulum.size(); i++) {
+  			if (kurikulum.get(i).getKodeKurikulum().equals(kode_kurikulum)) {
+  				kurikulumNow = kurikulum.get(i);
+  			}
+  		}
+  		
+  		List<MatkulModel> MatkulByKurikulum = kurikulumNow.getListMataKuliah();
+  		modelMatkul.addAttribute("matkul", MatkulByKurikulum);
+  		List<TermModel> allTerm = termDAO.selectAllTerms();
+  		modelTerm.addAttribute("term", allTerm);
     	  
           if (kelas != null) {
-        	  model.addAttribute("kelas",kelas);
+        	  TermModel term = termDAO.selectTerm(kelas.getId_term());
+		    	 String tahun_term = term.getTahunAjaran();
+		    	 String jenis_term = Integer.toString(term.getTermType());
+		    	 String nama_term = tahun_term +"-"+jenis_term;
+		    	 kelas.setNama_term(nama_term);
+		    	 
+        	  model.addAttribute("kelas", kelas);
+        //	  System.out.println(kelas.getJadwal_masuk());
         	  return "kelas-update";
           } else {
               return "kelas-not-found";
@@ -189,27 +247,49 @@ public class KelasController {
        @RequestMapping("/kelas/add/submit")
     public String addSubmit (
             @RequestParam(value = "nama_kelas", required = false) String nama_kelas,
-            @RequestParam(value = "nama_matkul", required = false) String nama_matkul,
+            @RequestParam(value = "id_matkul", required = false) int id_matkul,
             @RequestParam(value = "dosen", required = false) String dosen,
-            @RequestParam(value = "hari", required = false) String hari,
+            @RequestParam(value = "hari", required = false)  List<String> hari,
             @RequestParam(value = "ruangan", required = false) String ruangan,
-            @RequestParam(value = "jam_masuk", required = false) String jam_masuk,
-            @RequestParam(value = "jam_selesai", required = false) String jam_selesai)
+            @RequestParam(value = "id_term", required = false) int id_term,
+            @RequestParam(value = "jam_masuk", required = false)  List<String> jam_masuk,
+            @RequestParam(value = "jam_selesai", required = false)  List<String> jam_selesai,
+            @RequestParam(value = "kode_kurikulum1", required = false) String kode_kurikulum1)
     {
-     	//search id_matkul
-    	//bikin id_kelas
-   	   //bikin id_jadwal
-     	 
-    	
+    	 TermModel term = termDAO.selectTerm(id_term);
+    	 String tahun_term = term.getTahunAjaran();
+    	 String jenis_term = Integer.toString(term.getTermType());
+    	 String nama_term = tahun_term +"-"+jenis_term;
+    	 
+    	 KelasModel kelas = new KelasModel (null, id_matkul, nama_kelas, null, dosen, ruangan, null, null, null, id_term, nama_term, kode_kurikulum1);
     	   
-  //      KelasModel kelas = new KelasModel (id_kelas, id_matkul, nama_kelas, null, dosen, ruangan, null, null, null);
-  //      JadwalModel jadwal = new JadwalModel (id_jadwal, id_kelas, hari, jam_masuk, jam_selesai);
-    	//kelasDAO.createKelas
-    	//kelasDAO.createJadwal
-
-        return "kelas-success-add";
+    	 kelasDAO.createKelas(kelas);
+    	   
+    	  KelasModel kelasBaru= kelasDAO.selectKelasByNewest();
+    	  int id_kelas = kelasBaru.getId();
+    	  
+    	  makeJadwal(id_kelas, hari, jam_masuk, jam_selesai);
+    	  return "kelas-success-add";
     }
       
+    public void makeJadwal (int id_kelas,  List<String> hari,  List<String> jam_masuk,  List<String> jam_selesai ) {
+    	  //asumsi: setiap input jadwal, pasti memasukkan hari, jam masuk, dan jam selesai
+ 	   List<String> jumlahHari = hari;
+ 	   List<String> jumlahJamMasuk = jam_masuk;
+ 	   List<String> jumlahJamSelesai = jam_selesai;
+ 	   
+ 	   int jumlahJadwal = jumlahHari.size();
+ 	   
+ 	   for (int i = 0; i < jumlahJadwal; i++) {
+ 		String hariNow = jumlahHari.get(i);
+ 		String jam_masukNow = jumlahJamMasuk.get(i);
+ 		String jam_selesaiNow = jumlahJamSelesai.get(i);
+ 		
+ 		JadwalModel jadwal = new JadwalModel (null, id_kelas, hariNow, jam_masukNow, jam_selesaiNow);
+ 	 	kelasDAO.createJadwal(jadwal);
+ 	   }
+ 	   
+    }
 
 
     @RequestMapping(value = "/kelas/add", method = RequestMethod.POST)
@@ -224,7 +304,10 @@ public class KelasController {
         kelasDAO.createKelas(kelas);
     }
     
-    
+    @RequestMapping(value="/pilihKurikulum")
+    public String pilihKurikulum() {
+    	return "kelas-intro";
+    }
     
     
 
