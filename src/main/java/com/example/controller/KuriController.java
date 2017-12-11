@@ -50,9 +50,4 @@ public class KuriController
 		
 	}
 	
-//	@RequestMapping("/assignTerm/update")
-//	public String dashboard() {
-//		return "dashboard";
-//	}
-	
 }
