@@ -8,4 +8,5 @@ import com.example.model.MahasiswaModel;
 public interface APIMapper {
 	List<KurikulumModel> allKurikulum();
 	List<MahasiswaModel> allMahasiswa();
+	KurikulumModel kurikulumByKode(String Kode);
 }

@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class LinkStudentKuriModel {
-	KurikulumModel kurikulum;
-	MahasiswaModel student;
-
+	private String kurikulum;
+	private String npm;
+	private String angkatan;
 }

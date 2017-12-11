@@ -10,10 +10,13 @@ import lombok.NoArgsConstructor;
 public class MahasiswaModel {
 	private int npm;
 	private String username;
-	private String email_pribadi;
-	private String email_univ;
-	private BiodataModel biodata;
-	private IdentitasModel Identitas;
-	private BiodataOrtuModel Biodata_Ortu;
+	private String namaLengkap;
+	private long ipk;
+	private String jenjang;
+	private String tahunMasuk;
+	private String kodeKurikulum;
+	private String idUniv;
+	private String idFakultas;
+	private String idProdi;
   
 }
