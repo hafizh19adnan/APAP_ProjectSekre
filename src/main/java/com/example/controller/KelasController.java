@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.example.dao.APIMapper;
 import com.example.dao.KelasDAO;
 import com.example.model.JadwalModel;
 import com.example.model.KelasModel;
@@ -30,8 +31,9 @@ public class KelasController {
 	@Autowired
     KelasService kelasDAO;
 	
+	
 	@Autowired
-	KelasDAO kelasDAOImpl;
+	APIMapper apiMapperImpl;
 	
 	@Autowired
 	TermService termDAO;
@@ -48,7 +50,7 @@ public class KelasController {
 		List<KelasModel> semuakelas = kelasDAO.getAllKelas();
 		
 		//udh ada api getAllKurikulum
-		List<KurikulumModel> kurikulum = kelasDAOImpl.selectAllKurikulum();
+		List<KurikulumModel> kurikulum = apiMapperImpl.allKurikulum();
 		KurikulumModel kurikulumNow = null;
 		
 		for (int i = 0; i < kurikulum.size(); i++) {
@@ -132,7 +134,7 @@ public class KelasController {
 		    	 kelas.setNama_term(nama_term);
 	        	String kode_kurikulum = kelas.getKode_kurikulum();
 	        	//udh ada api getAllKurikulum
-	    		List<KurikulumModel> kurikulum = kelasDAOImpl.selectAllKurikulum();
+	    		List<KurikulumModel> kurikulum = apiMapperImpl.allKurikulum();
 	    		KurikulumModel kurikulumNow = null;
 	    		
 	    		for (int i = 0; i < kurikulum.size(); i++) {
@@ -209,7 +211,7 @@ public class KelasController {
     	  KelasModel kelas = kelasDAO.getKelasById(id);
     	  String kode_kurikulum = kelas.getKode_kurikulum();
     	//udh ada api getAllKurikulum
-  		List<KurikulumModel> kurikulum = kelasDAOImpl.selectAllKurikulum();
+  		List<KurikulumModel> kurikulum = apiMapperImpl.allKurikulum();
   		KurikulumModel kurikulumNow = null;
   		
   		for (int i = 0; i < kurikulum.size(); i++) {
