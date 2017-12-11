@@ -74,7 +74,7 @@ public interface KelasMapper {
 
 	
 	@Select("SELECT * FROM kelas where id = #{id}")
-	KelasModel selectKelas(String id);
+	KelasModel selectKelas(String id); 
 	
 	@Delete("DELETE FROM kelas WHERE id = #{id}") 
 	void deleteKelas(String id);
