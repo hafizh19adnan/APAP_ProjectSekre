@@ -82,11 +82,15 @@ public interface KelasMapper {
 	@Insert("INSERT INTO kelas (id, nama_kelas, id_matkul, dosen, ruangan, id_term, kode_kurikulum) VALUES (null, #{nama_kelas}, #{id_matkul}, #{dosen}, #{ruangan}, #{id_term}, #{kode_kurikulum})")
     void createKelas (KelasModel kelas);
 	
+	@Select("SELECT * FROM kelas order by id desc limit 1")
+	KelasModel selectKelasByNewest();
+	
 	@Insert("INSERT INTO jadwal (id, id_kelas, hari, jam_masuk, jam_keluar) VALUES (null, #{id_kelas}, #{hari}, #{jam_masuk}, #{jam_keluar})")
     void createJadwal (JadwalModel jadwal);
 	
 	
-	@Update("UPDATE kelas SET nama_kelas = #{nama_kelas}, id_matkul = #{id_matkul}, dosen = #{dosen}, ruangan = #{ruangan} WHERE id = #{id}")
+	//asumsi, kurikulum gabisa diganti
+	@Update("UPDATE kelas SET nama_kelas = #{nama_kelas}, id_matkul = #{id_matkul}, dosen = #{dosen}, ruangan = #{ruangan}, id_term = #{id_term} WHERE id = #{id}")
 	void updateKelas (KelasModel kelas);
 	
 	//method sementara, nunggu api dari kurikulum

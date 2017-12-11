@@ -17,8 +17,8 @@
 			     <div class="navbar-nav">
 			    	<a class="nav-item nav-link active" href="/dashboard">Dashboard <span class="sr-only">(current)</span></a>
 			    	<a class="nav-item nav-link active" href="/term">Term <span class="sr-only">(current)</span></a>
-			    		<a class="nav-item nav-link active" href="/pilihKurikulum">Kelas <span class="sr-only">(current)</span></a>
-			    <a class="nav-item nav-link active" href="/assignkurikulum">Kurikulum <span class="sr-only">(current)</span></a>
+			    	<a class="nav-item nav-link active" href="/kelas">Kelas <span class="sr-only">(current)</span></a>
+			    	<a class="nav-item nav-link active" href="/assignkurikulum">Kurikulum <span class="sr-only">(current)</span></a>
 			    	<a>
 			      	<form th:action = "@{/logout}" method = "post">
 						<input class="btn btn-danger" type = "submit" value = "Sign Out"  />
@@ -69,35 +69,7 @@
 				</form>
 			</div>
 			<br/>
-			<h2>Personal - Kurikulum</h2>
-			<div class="card card-depth">
-				<form action="/assignKurikulum" method="POST">
-					
-					<div class="row">
-						<div class="col-6">
-							<label>Angkatan</label>
-							<select class="form-control">
-								<option>2017</option>
-								<option>2016</option>
-								<option>2015</option>
-								<option>2014</option>
-								<option>2013</option>
-								<option>2012</option>
-							</select>
-						</div>
-						<div class="col-6">
-							<label>Kurikulum</label>
-							<select class="form-control">
-								<option>Kurikulum 2016 Revisi</option>
-								<option>Kurikulum 2016</option>
-								<option>Kurikulum 2010</option>
-							</select>
-						</div>
-					</div>
-					<br/>
-					<input type="submit" name="submit" class="btn btn-primary" value="Atur Kurikulum" />
-				</form>
-			</div>
+			
 			<br/>
 			<h2>Lihat Kurikulum</h2>
 			<div class="card">

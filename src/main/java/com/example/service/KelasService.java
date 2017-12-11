@@ -2,6 +2,7 @@ package com.example.service;
 
 import java.util.List;
 
+import com.example.model.JadwalModel;
 import com.example.model.KelasModel;
 import com.example.model.MatkulModel;
 import com.example.model.TermModel;
@@ -23,6 +24,13 @@ public interface KelasService {
 	
 	//method sementara, nunggu api dari kurikulum
 	List<MatkulModel> selectMatkul();
+	
+	KelasModel selectKelasByNewest();
+	
+	void createJadwal(JadwalModel jadwal);
+
+	KelasModel getKelasByKuriTerm(String kodeKurikulum, String nama_term);
+	
 
 
 }
