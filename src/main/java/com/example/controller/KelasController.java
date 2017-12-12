@@ -37,18 +37,17 @@ public class KelasController {
 	
 	@Autowired
 	TermService termDAO;
-	
+
 	@RequestMapping("/kelas")
+	public String default_kelas() {
+		return "redirect:/pilihKurikulum";
+	}
+	
+	@RequestMapping("/kelas/{kode_kurikulum}")
 	public String view(Model model, Model modelMatkul, Model modelTerm,
-			@RequestParam(value = "kode_kurikulum1", required = false) String kode_kurikulum1) {
-		
-		//nanti dapet dari page pilih kurikulum
-		//ini sementara dulu
-		String kode_kurikulum = "FTUI2012";
-		
+			  @PathVariable(value = "kode_kurikulum") String kode_kurikulum) {
 		
 		List<KelasModel> semuakelas = kelasDAO.getAllKelas();
-		
 		//udh ada api getAllKurikulum
 		List<KurikulumModel> kurikulum = apiMapperImpl.allKurikulum();
 		KurikulumModel kurikulumNow = null;
@@ -112,6 +111,7 @@ public class KelasController {
 			kelasByKurikulum.get(i).setHari(hari);
 			kelasByKurikulum.get(i).setJam(jam);
 		}
+		System.out.println("-----------------------"+'\n'+semuakelas.size());
 		
 		model.addAttribute("semuakelas", kelasByKurikulum);
 		return "kelas";
@@ -307,8 +307,15 @@ public class KelasController {
     }
     
     @RequestMapping(value="/pilihKurikulum")
-    public String pilihKurikulum() {
+    public String pilihKurikulum(Model model) {
+    	List<KurikulumModel> kurikulum = apiMapperImpl.allKurikulum();
+    	model.addAttribute("kurikulum",kurikulum);
     	return "kelas-intro";
+    }
+    
+    @RequestMapping(value="/submitPilihKurikulum")
+    public String submitPilihKurikulum(Model model,@RequestParam(value = "kode_kurikulum", required = false) String kode_kurikulum) {
+      	return "redirect:/kelas/"+kode_kurikulum;
     }
     
     
