@@ -8,28 +8,7 @@
 	<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css"/>
 </head>
 <body>
-	<header>
-	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-		<div class="container">
-			<a class="navbar-brand" href="#">FASILKOM UI</a>
-			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-			<div class="collapse navbar-collapse pull-right" id="navbarNavAltMarkup">
-			     <div class="navbar-nav">
-			    	<a class="nav-item nav-link active" href="/dashboard">Dashboard <span class="sr-only">(current)</span></a>
-			    	<a class="nav-item nav-link active" href="/term">Term <span class="sr-only">(current)</span></a>
-			    	<a class="nav-item nav-link active" href="/kelas">Kelas <span class="sr-only">(current)</span></a>
-			    	<a class="nav-item nav-link active" href="/assignKurikulum">Kurikulum <span class="sr-only">(current)</span></a>
-			    	<a>
-			      	<form th:action = "@{/logout}" method = "post">
-						<input class="btn btn-danger" type = "submit" value = "Sign Out"  />
-					</form>
-					</a>
-			    </div>
-			</div>	
-		</div>
-	</nav>
-	</header>	
-
+	<header th:replace="fragments/fragment :: header"></header>	
 	<!--Jumbotron Section-->
 	<section id="header">
 		<div class="container">
@@ -48,6 +27,7 @@
 						<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
 							<label>Angkatan</label>
 							<select class="form-control" name="angkatan">
+								<option disabled="true" selected="true">Pilih Angkatan</option>
 							<div th:each="angkatan,iterationStatus: ${angkatan}">
 								
 								<option th:text="${angkatan}" th:value="${angkatan}">2017</option>
@@ -57,6 +37,7 @@
 						<div class="col-6">
 							<label>Kurikulum</label>
 							<select class="form-control" name="kurikulum">
+								<option disabxled="true" selected="true">Pilih Kurikulum</option>
 								<div th:each="kurikulum,iterationStatus: ${kurikulum}">
 								
 								<option th:text="${kurikulum.namaKurikulum}" th:value="${kurikulum.kodeKurikulum}">2017</option>
