@@ -1,6 +1,6 @@
 package com.example;
 
-import javax.activation.DataSource;
+import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -12,6 +12,10 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
+	
+	@Autowired
+	DataSource dataSource;
+	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception{
 		http.authorizeRequests().
@@ -21,7 +25,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 	
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception{
-		auth.inMemoryAuthentication().withUser("user").password("password").roles("USER");
-		auth.inMemoryAuthentication().withUser("admin").password("admin").roles("ADMIN");
+		System.out.println("called");
+		
+		auth.jdbcAuthentication()
+		.dataSource(dataSource)
+		.usersByUsernameQuery("select username, password, '1', id_univ, id_fakultas from user where username=?")
+		.authoritiesByUsernameQuery("select username, 'ROLE-USER' from user where username = ?");
+		
+//		auth.inMemoryAuthentication().withUser("user").password("password").roles("USER");
+//		auth.inMemoryAuthentication().withUser("admin").password("admin").roles("ADMIN");
+
 	}
 }

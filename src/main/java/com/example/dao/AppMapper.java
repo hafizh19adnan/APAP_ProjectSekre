@@ -29,6 +29,9 @@ import com.example.model.KelasModel;
 public interface AppMapper
 {
 
+	@Select("Select * from user where username = #{name}")
+	UserModel getLoggedUser(@Param("name") String name);
+
 
 }
 

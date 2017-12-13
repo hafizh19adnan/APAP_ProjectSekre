@@ -73,4 +73,32 @@ public class APIMapperImpl implements APIMapper {
 		return mapper.convertValue(kurikulum, KurikulumModel.class);
 	}
 
+	@Override
+	public String getNamaProdi(int univ, int fakultas, int prodi) {
+		// TODO Auto-generated method stub
+		ResponseModel stuff = restTemplate.getForObject("https://apap2017-univ-apps.herokuapp.com/getProdi/"+univ +"/" +fakultas+"/"+prodi, ResponseModel.class);
+		LinkedHashMap kelasProdi = (LinkedHashMap) stuff.getResult();
+		LinkedHashMap namaProdi = (LinkedHashMap) kelasProdi.get("prodi");
+		
+		return String.valueOf(namaProdi.get("nama_prodi"));
+	}
+
+	@Override
+	public String getNamaUniv(int id_univ) {
+		// TODO Auto-generated method stub
+		ResponseModel stuff = restTemplate.getForObject("https://apap2017-univ-apps.herokuapp.com/getUniversitas/"+id_univ, ResponseModel.class);
+		LinkedHashMap kelasUniv = (LinkedHashMap) stuff.getResult();
+		LinkedHashMap namaUniv = (LinkedHashMap) kelasUniv.get("universitas");
+		return String.valueOf(namaUniv.get("nama_univ"));
+	}
+
+	@Override
+	public String getNamaFakultas(int id_univ, int id_fakultas) {
+		// TODO Auto-generated method stub
+		ResponseModel stuff = restTemplate.getForObject("https://apap2017-univ-apps.herokuapp.com/getFakultas/"+id_univ +"/" +id_fakultas, ResponseModel.class);
+		LinkedHashMap kelasFakultas = (LinkedHashMap) stuff.getResult();
+		LinkedHashMap namaFakultas= (LinkedHashMap) kelasFakultas.get("fakultas");
+		return String.valueOf(namaFakultas.get("nama_fakultas"));
+	}
+
 }
