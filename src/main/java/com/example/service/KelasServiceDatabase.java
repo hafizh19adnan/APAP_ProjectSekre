@@ -42,7 +42,7 @@ public class KelasServiceDatabase implements KelasService {
 		@Override
 		public void createKelas(KelasModel kelas) {
 			log.info("create kelas");
-			kelasMapper.updateKelas(kelas);
+			kelasMapper.createKelas(kelas);
 		}
 
 		@Override
@@ -84,8 +84,38 @@ public class KelasServiceDatabase implements KelasService {
 		}
 
 		@Override
-		public KelasModel getKelasByKuriTerm(String kodeKurikulum, String nama_term) {
-			// TODO Auto-generated method stub
-			return null;
+		public List<KelasModel> getAllKelasByKuriTerm(String kodeKurikulum, int id_term) {
+			log.info ("select all kelas by kodeKurikulum and nama_term {}", kodeKurikulum);
+			log.info ("select all kelas by kodeKurikulum and nama_term {}", id_term);
+			return kelasMapper.getAllKelasByKuriTerm(kodeKurikulum, id_term);
 		}
+
+		@Override
+		public void deleteJadwal(String id) {
+			// TODO Auto-generated method stub
+			log.info("delete jadwal by id {}", id);
+			kelasMapper.deleteJadwal(id);
+		}
+
+		@Override
+		public JadwalModel selectJadwal(String id) {
+			// TODO Auto-generated method stub
+			log.info("select jadwal by id {}", id);
+			return kelasMapper.selectJadwal(id);
+		}
+
+		@Override
+		public void updateJadwal(JadwalModel jadwal) {
+		log.info("update jadwal");
+		kelasMapper.updateJadwal(jadwal);
+		}
+
+//		@Override
+//		public List<KelasModel> getKelasByKuriTerm(String kodeKurikulum, String nama_term) {
+//			log.info ("select all kelas by kodeKurikulum and nama_term {}", kodeKurikulum, nama_term);
+//			return kelasMapper.getKelasByKuriTerm(kodeKurikulum, nama_term);
+//			
+//		}
+		
+		
 }

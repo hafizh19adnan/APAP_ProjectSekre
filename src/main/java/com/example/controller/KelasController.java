@@ -31,7 +31,6 @@ public class KelasController {
 	@Autowired
     KelasService kelasDAO;
 	
-	
 	@Autowired
 	APIMapper apiMapperImpl;
 	
@@ -39,14 +38,17 @@ public class KelasController {
 	TermService termDAO;
 
 	@RequestMapping("/kelas")
-	public String default_kelas() {
-		return "redirect:/pilihKurikulum";
-	}
-	
-	@RequestMapping("/kelas/{kode_kurikulum}")
-	public String view(Model model, Model modelMatkul, Model modelTerm,
-			  @PathVariable(value = "kode_kurikulum") String kode_kurikulum) {
+	public String view(Model model, Model modelMatkul, Model modelTerm, Model modelKuri,
+			@RequestParam(value = "kode_kurikulum", required = true) String kode_kurikulum) {
 		
+		//nanti dapet dari page pilih kurikulum
+		//ini sementara dulu
+
+		KurikulumModel kuri = new KurikulumModel();
+		kuri.setKodeKurikulum(kode_kurikulum);
+		System.out.println("inikode+"+kode_kurikulum);
+		modelKuri.addAttribute("kuri", kuri);
+
 		List<KelasModel> semuakelas = kelasDAO.getAllKelas();
 		//udh ada api getAllKurikulum
 		List<KurikulumModel> kurikulum = apiMapperImpl.allKurikulum();
@@ -61,6 +63,14 @@ public class KelasController {
 		List<MatkulModel> MatkulByKurikulum = kurikulumNow.getListMataKuliah();
 		modelMatkul.addAttribute("matkul", MatkulByKurikulum);
 		List<TermModel> allTerm = termDAO.selectAllTerms();
+		
+		for (int i = 0; i < allTerm.size(); i++) {
+			String tahun = allTerm.get(i).getTahunAjaran();
+			String tipe = allTerm.get(i).getTermString();
+			String tahunDantipe = tahun+" - "+tipe;
+			allTerm.get(i).setTahunDantipe(tahunDantipe);
+		}
+		
 		modelTerm.addAttribute("term", allTerm);
 		
 		//ini kalo udh ada kode kurikulum
@@ -202,17 +212,34 @@ public class KelasController {
      
     }
     
+    @RequestMapping("/jadwal/delete/{id}")
+    public void deleteJadwal (Model model, @PathVariable(value = "id") String id)
+    {
+    	  JadwalModel jadwal = kelasDAO.selectJadwal(id);
+
+          if (jadwal != null) {
+        	  kelasDAO.deleteJadwal(id);
+          }
+          
+          //sementara, kalo kelas diapus, jadwal ttp ada ya
+          //solusi: pake FK di DB
+     
+    }
+    
     
 
     @RequestMapping("/kelas/update/{id}")
     public String updateKelas (Model model, Model modelMatkul, Model modelTerm, @PathVariable(value = "id") String id)
     {
     	  KelasModel kelas = kelasDAO.getKelasById(id);
+    	  kelas.setJam("test123");
     	  String kode_kurikulum = kelas.getKode_kurikulum();
     	//udh ada api getAllKurikulum
+    	  
   		List<KurikulumModel> kurikulum = apiMapperImpl.allKurikulum();
   		KurikulumModel kurikulumNow = null;
-  		
+  		model.addAttribute("kuri", kode_kurikulum);
+  		model.addAttribute("hari", "asdasdad");
   		for (int i = 0; i < kurikulum.size(); i++) {
   			if (kurikulum.get(i).getKodeKurikulum().equals(kode_kurikulum)) {
   				kurikulumNow = kurikulum.get(i);
@@ -222,6 +249,15 @@ public class KelasController {
   		List<MatkulModel> MatkulByKurikulum = kurikulumNow.getListMataKuliah();
   		modelMatkul.addAttribute("matkul", MatkulByKurikulum);
   		List<TermModel> allTerm = termDAO.selectAllTerms();
+  		
+  		for (int i = 0; i < allTerm.size(); i++) {
+			String tahun = allTerm.get(i).getTahunAjaran();
+			String tipe = allTerm.get(i).getTermString();
+			String tahunDantipe = tahun+" - "+tipe;
+			allTerm.get(i).setTahunDantipe(tahunDantipe);
+		}
+		
+  		
   		modelTerm.addAttribute("term", allTerm);
     	  
           if (kelas != null) {
@@ -239,37 +275,47 @@ public class KelasController {
           }
     }
     
-    @RequestMapping(value = "/kelas/update", method = RequestMethod.POST)
-    public void updateSubmit (@ModelAttribute KelasModel kelas) {
-         kelasDAO.updateKelas(kelas);     
-    }
+    
+    @RequestMapping(value = "/kelas/updatesubmit", method = RequestMethod.GET)
+    public String updateSubmit (@ModelAttribute KelasModel kelas) {
+//        List<JadwalModel> jadwal = kelas.getJadwal_masuk();
+    	System.out.println("=======  " + kelas + "  =======");
+    	kelasDAO.updateKelas(kelas);
+    	String[] arrIdJadwal = kelas.getJam().split(",");
+    	for (int ii = 0; ii < arrIdJadwal.length; ii++) {
+    		kelasDAO.deleteJadwal(arrIdJadwal[ii]);
+    	}
+    	return "class-update-success";
+    } 
     
     
-       @RequestMapping("/kelas/add/submit")
+       @RequestMapping("/kelas/add/submit/")
     public String addSubmit (
             @RequestParam(value = "nama_kelas", required = false) String nama_kelas,
             @RequestParam(value = "id_matkul", required = false) int id_matkul,
-            @RequestParam(value = "dosen", required = false) String dosen,
+            @RequestParam(value = "nama_dosen", required = false) String dosen,
             @RequestParam(value = "hari", required = false)  List<String> hari,
             @RequestParam(value = "ruangan", required = false) String ruangan,
             @RequestParam(value = "id_term", required = false) int id_term,
             @RequestParam(value = "jam_masuk", required = false)  List<String> jam_masuk,
             @RequestParam(value = "jam_selesai", required = false)  List<String> jam_selesai,
-            @RequestParam(value = "kode_kurikulum1", required = false) String kode_kurikulum1)
+            @RequestParam(value = "kodeKurikulum", required = false) String kode_kurikulum)
     {
     	 TermModel term = termDAO.selectTerm(id_term);
     	 String tahun_term = term.getTahunAjaran();
     	 String jenis_term = Integer.toString(term.getTermType());
     	 String nama_term = tahun_term +"-"+jenis_term;
     	 
-    	 KelasModel kelas = new KelasModel (null, id_matkul, nama_kelas, null, dosen, ruangan, null, null, null, id_term, nama_term, kode_kurikulum1);
+    	 KelasModel kelas = new KelasModel (null, id_matkul, nama_kelas, null, dosen, ruangan, null, null, id_term, kode_kurikulum,nama_term,  null);
     	   
     	 kelasDAO.createKelas(kelas);
     	   
     	  KelasModel kelasBaru= kelasDAO.selectKelasByNewest();
     	  int id_kelas = kelasBaru.getId();
-    	  
-    	  makeJadwal(id_kelas, hari, jam_masuk, jam_selesai);
+    	  System.out.println(jam_masuk);
+    	  System.out.println(jam_selesai);
+
+    	  makeJadwal(id_kelas, hari, jam_masuk, jam_selesai); 
     	  return "kelas-success-add";
     }
       
@@ -284,7 +330,7 @@ public class KelasController {
  	   for (int i = 0; i < jumlahJadwal; i++) {
  		String hariNow = jumlahHari.get(i);
  		String jam_masukNow = jumlahJamMasuk.get(i);
- 		String jam_selesaiNow = jumlahJamSelesai.get(i);
+	 		String jam_selesaiNow = jumlahJamSelesai.get(i);
  		
  		JadwalModel jadwal = new JadwalModel (null, id_kelas, hariNow, jam_masukNow, jam_selesaiNow);
  	 	kelasDAO.createJadwal(jadwal);
@@ -292,7 +338,8 @@ public class KelasController {
  	   
     }
 
-
+    
+/*
     @RequestMapping(value = "/kelas/add", method = RequestMethod.POST)
     public void addSubmit (@ModelAttribute KelasModel kelas)
     {
@@ -303,12 +350,12 @@ public class KelasController {
     //	String nama_matkul = matkul.getNamaMatkul();
     //	kelas.setNama_matkul(nama_matkul);
         kelasDAO.createKelas(kelas);
-    }
+    } */
     
     @RequestMapping(value="/pilihKurikulum")
     public String pilihKurikulum(Model model) {
     	List<KurikulumModel> kurikulum = apiMapperImpl.allKurikulum();
-    	model.addAttribute("kurikulum",kurikulum);
+    	model.addAttribute("kuri", kurikulum);
     	return "kelas-intro";
     }
     
@@ -316,7 +363,4 @@ public class KelasController {
     public String submitPilihKurikulum(Model model,@RequestParam(value = "kode_kurikulum", required = false) String kode_kurikulum) {
       	return "redirect:/kelas/"+kode_kurikulum;
     }
-    
-    
-
 }
