@@ -24,6 +24,14 @@ public class TermModel {
     private String termString;
     
     @JsonIgnore
+    public String tahunDantipe;
+    
+    @JsonIgnore
+    public String getTahunDanTipe()
+    {
+    	return tahunDantipe;
+    }
+    @JsonIgnore
     public String getTS()
     {
     	return termString;
@@ -56,5 +64,7 @@ public class TermModel {
 	    	this.termType = 3;
 	    }
 	}
+    
+    
   
 }

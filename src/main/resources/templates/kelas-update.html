@@ -17,7 +17,7 @@
 			     <div class="navbar-nav">
 			    	<a class="nav-item nav-link active" href="/dashboard">Dashboard <span class="sr-only">(current)</span></a>
 			    	<a class="nav-item nav-link active" href="/term">Term <span class="sr-only">(current)</span></a>
-			    	<a class="nav-item nav-link active" href="/kelas">Kelas <span class="sr-only">(current)</span></a>
+			    	<a class="nav-item nav-link active" href="/pilihKurikulum">Kelas <span class="sr-only">(current)</span></a>
 			    	<a class="nav-item nav-link active" href="/assignkurikulum">Kurikulum <span class="sr-only">(current)</span></a>
 			    	<a><form th:action = "@{/logout}" method = "post"><input class="btn btn-danger" type = "submit" value = "Sign Out"  />
 					</form>
@@ -40,15 +40,19 @@
 		<div class="container">
 			<h2>Ubah Kelas</h2>
 			<div class="card card-depth">
-				<form action="/kelas/update/submit" method="post" th:object="${kelas}">
-					
+				<form action="/kelas/updatesubmit" method="get" th:object="${kelas}">
+					<input type="hidden" name="id" th:value="${kelas.id}" th:field="*{id}"/>
+					<input type="hidden" id="arr-jadwal" name="jam" th:value="${kelas.jam}" th:field="*{jam}"/>
+					<input type="hidden" id="json-jadwal" name="json-jadwal" th:value="${kelas.nama_term}" th:field="*{nama_term}"/>
 					<div class="form-group">
 						<label>Nama Kelas</label>
 						<input type="text" name="nama_kelas" th:value="${kelas.nama_kelas}" th:field="*{nama_kelas}" class="form-control"/>
 					</div>
 					<div class="form-group">
 						<label>Mata Kuliah</label>
-						<input type="text" name="nama_matkul" th:value="${kelas.nama_matkul}" th:field="*{nama_matkul}" class="form-control"/>
+						<select class="form-control" name="id_matkul">
+							<option  th:each="matkul, iterationsStatus:${matkul}" th:text="${matkul.namaMatkul}"  th:value="${matkul.idMatkul}"/>
+						</select>
 					</div>
 					<div class="form-group">
 						<label>Nama Dosen</label>
@@ -60,7 +64,11 @@
 					</div>
 					<div class="form-group">
 						<label>Term</label>
-						<input type="text" name="dosen" th:value="${kelas.id_term}" th:field="*{nama_term}" class="form-control"/>
+						<input type="text" name="term" th:value="${kelas.nama_term}" class="form-control" disabled="disabled"/>
+					</div>
+					<div class="form-group">
+						<label>Kurikulum</label>
+						<input type="text" name="kurikulum" th:value="${kuri}" class="form-control" disabled="disabled" />
 					</div>
 					<span id="counter" style="display:none" th:text="${#lists.size(kelas.jadwal_masuk)}"></span>
 						
@@ -84,15 +92,13 @@
 							<div class='row'>
 								<div class='col-12'>
 									<br/>
-									<button th:id="'button-delete-jadwal-'+${iterationStatus.count}" class="btn btn-danger">- Delete Jadwal</button>
+									<button name="delete_jadwal"  th:value="${jadwal_masuk.id}" th:id="${iterationStatus.count}" class="btn btn-danger button-delete-jadwal">- Delete Jadwal</button>
 									<hr/>
 								</div>
 							</div>
 							</div>
 						
 					</div>
-					
-					
 					<br/>
 					<button id="button-add-jadwal" class="btn btn-success">+ Tambah Jadwal</button>
 					<hr/>

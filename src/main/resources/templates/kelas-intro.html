@@ -42,9 +42,9 @@
 			<form action="/kelas/" method="get">
 					<div class="form-group">
 						<br/>
-						<select class="form-control">
-							<div  th:each="kuri,iterationStatus: ${kurikulum}" >
-								<option th:value="${kuri.kodeKurikulum}" th:text="${kuri.namaKurikulum}" name="kode_kurikulum"></option>
+						<select class="form-control" name="kode_kurikulum">
+							<div>
+								<option th:each="kuri,iterationStatus: ${kuri}"  th:value="${kuri.kodeKurikulum}" th:text="${kuri.kodeKurikulum}" ></option>
 							</div>
 							
 						</select>

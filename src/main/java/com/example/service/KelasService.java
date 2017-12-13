@@ -29,7 +29,13 @@ public interface KelasService {
 	
 	void createJadwal(JadwalModel jadwal);
 
-	KelasModel getKelasByKuriTerm(String kodeKurikulum, String nama_term);
+	List<KelasModel> getAllKelasByKuriTerm(String kodeKurikulum, int id_term);
+	
+	void deleteJadwal(String id);
+	
+	JadwalModel selectJadwal(String id);
+	
+	void updateJadwal(JadwalModel jadwal);
 	
 
 

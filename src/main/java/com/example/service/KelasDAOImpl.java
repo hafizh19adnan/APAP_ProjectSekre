@@ -1,4 +1,4 @@
-package com.example.service;
+/*package com.example.service;
 
 import java.util.List;
 
@@ -25,3 +25,4 @@ public class KelasDAOImpl implements KelasDAO{
 		return kurikulum;	
 	}
 }
+*/
