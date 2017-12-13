@@ -11,4 +11,7 @@ public class LinkStudentKuriModel {
 	private String kurikulum;
 	private String npm;
 	private String angkatan;
+	private String idUniv;
+	private String idFakultas;
+	private String idProdi;
 }

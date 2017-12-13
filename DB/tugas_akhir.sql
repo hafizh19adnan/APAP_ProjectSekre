@@ -1,15 +1,15 @@
 -- phpMyAdmin SQL Dump
 -- version 4.7.0
 -- https://www.phpmyadmin.net/
+-- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 05, 2017 at 02:42 PM
--- Server version: 10.1.22-MariaDB
--- PHP Version: 7.1.4
+-- Generation Time: Dec 12, 2017 at 06:42 AM
+-- Server version: 10.1.8-MariaDB
+-- PHP Version: 5.6.14
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -102,36 +102,24 @@ INSERT INTO `kelas` (`id`, `nama_kelas`, `id_matkul`, `dosen`, `ruangan`, `id_te
 
 CREATE TABLE `link_student_kuri` (
   `id_student` int(11) NOT NULL,
-  `id_kuri` int(11) NOT NULL
+  `id_kuri` varchar(20) NOT NULL,
+  `angkatan` int(11) NOT NULL,
+  `id_univ` int(11) NOT NULL,
+  `id_fakultas` int(11) NOT NULL,
+  `id_prodi` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `link_student_kuri`
 --
 
-INSERT INTO `link_student_kuri` (`id_student`, `id_kuri`) VALUES
-(1, 1),
-(2, 1),
-(3, 1),
-(4, 1),
-(5, 1),
-(6, 2),
-(7, 3),
-(8, 2),
-(9, 1),
-(10, 1),
-(11, 1),
-(12, 2),
-(13, 1),
-(14, 1),
-(15, 3),
-(16, 4),
-(17, 2),
-(18, 1),
-(19, 2),
-(20, 1),
-(21, 2),
-(22, 1);
+INSERT INTO `link_student_kuri` (`id_student`, `id_kuri`, `angkatan`, `id_univ`, `id_fakultas`, `id_prodi`) VALUES
+(1234367892, 'CSUI2011', 2015, 1, 1, 1),
+(1506757844, 'CSUI2011', 2015, 1, 1, 1),
+(1506757849, 'FEUI2013', 207, 2, 2, 1),
+(1506757866, 'CSUI2011', 2015, 1, 1, 1),
+(1608080808, 'FTUI2012', 2016, 2, 1, 2),
+(1709090909, 'FTUI2012', 2016, 2, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -193,19 +181,21 @@ CREATE TABLE `user` (
   `id` int(11) NOT NULL,
   `nik` varchar(15) NOT NULL,
   `username` varchar(25) NOT NULL,
-  `password` varchar(100) NOT NULL
+  `password` varchar(100) NOT NULL,
+  `id_univ` int(11) NOT NULL,
+  `id_fakultas` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`id`, `nik`, `username`, `password`) VALUES
-(1, '21390123213123', 'hafizh', 'hafizh'),
-(2, '21390123213124', 'may.iffah', 'mayiffah'),
-(3, '21390123213125', 'sandar', 'sandar'),
-(4, '21390123213126', 'amesh', 'amesh'),
-(5, '21390123213127', 'admin', 'admin');
+INSERT INTO `user` (`id`, `nik`, `username`, `password`, `id_univ`, `id_fakultas`) VALUES
+(1, '21390123213123', 'hafizh', 'hafizh', 1, 1),
+(2, '21390123213124', 'may.iffah', 'mayiffah', 2, 2),
+(3, '21390123213125', 'sandar', 'sandar', 2, 1),
+(4, '21390123213126', 'amesh', 'amesh', 1, 1),
+(5, '21390123213127', 'admin', 'admin', 0, 0);
 
 --
 -- Indexes for dumped tables
@@ -260,7 +250,7 @@ ALTER TABLE `kelas`
 -- AUTO_INCREMENT for table `term`
 --
 ALTER TABLE `term`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT for table `user`
 --
@@ -275,7 +265,6 @@ ALTER TABLE `user`
 --
 ALTER TABLE `kelas`
   ADD CONSTRAINT `kelas_ibfk_1` FOREIGN KEY (`id_term`) REFERENCES `term` (`id`);
-COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

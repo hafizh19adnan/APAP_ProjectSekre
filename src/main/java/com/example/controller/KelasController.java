@@ -36,7 +36,7 @@ public class KelasController {
 	
 	@Autowired
 	TermService termDAO;
-	
+
 	@RequestMapping("/kelas")
 	public String view(Model model, Model modelMatkul, Model modelTerm, Model modelKuri,
 			@RequestParam(value = "kode_kurikulum", required = true) String kode_kurikulum) {
@@ -48,8 +48,8 @@ public class KelasController {
 		kuri.setKodeKurikulum(kode_kurikulum);
 		System.out.println("inikode+"+kode_kurikulum);
 		modelKuri.addAttribute("kuri", kuri);
+
 		List<KelasModel> semuakelas = kelasDAO.getAllKelas();
-		
 		//udh ada api getAllKurikulum
 		List<KurikulumModel> kurikulum = apiMapperImpl.allKurikulum();
 		KurikulumModel kurikulumNow = null;
@@ -121,6 +121,7 @@ public class KelasController {
 			kelasByKurikulum.get(i).setHari(hari);
 			kelasByKurikulum.get(i).setJam(jam);
 		}
+		System.out.println("-----------------------"+'\n'+semuakelas.size());
 		
 		model.addAttribute("semuakelas", kelasByKurikulum);
 		return "kelas";
@@ -357,5 +358,10 @@ public class KelasController {
     	List<KurikulumModel> kurikulum = apiMapperImpl.allKurikulum();
     	model.addAttribute("kuri", kurikulum);
     	return "kelas-intro";
+    }
+    
+    @RequestMapping(value="/submitPilihKurikulum")
+    public String submitPilihKurikulum(Model model,@RequestParam(value = "kode_kurikulum", required = false) String kode_kurikulum) {
+      	return "redirect:/kelas/"+kode_kurikulum;
     }
 }

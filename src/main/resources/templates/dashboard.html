@@ -7,85 +7,57 @@
 	<link rel="stylesheet" type="text/css" href="css/style.css"/>
 </head>
 <body>
-	<header>
-	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-		<div class="container">
-			<a class="navbar-brand" href="#">FASILKOM UI</a>
-			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-			<div class="collapse navbar-collapse pull-right" id="navbarNavAltMarkup">
-			    <div class="navbar-nav">
-			    	<a class="nav-item nav-link active" href="/dashboard">Dashboard <span class="sr-only">(current)</span></a>
-			    	<a class="nav-item nav-link active" href="/term">Term <span class="sr-only">(current)</span></a>
-			    	<a class="nav-item nav-link active" href="/pilihKurikulum">Kelas <span class="sr-only">(current)</span></a>
-			    	<a class="nav-item nav-link active" href="/assignkurikulum">Kurikulum <span class="sr-only">(current)</span></a>
-			    	<a>
-			      	<form th:action = "@{/logout}" method = "post">
-						<input class="btn btn-danger" type = "submit" value = "Sign Out"  />
-					</form>
-					</a>
-			    </div>
-			</div>	
-		</div>
-	</nav>
-	</header>	
-
+	<header th:replace="fragments/fragment :: header"></header>	
 	<!--Jumbotron Section-->
 	<section id="header">
 		<div class="container">
-			<h1>Menu Aplikasi Sekretariat</h1>
-			<a href="#">Dashboard /</a>
+			<img src="img/person-flat.png" width="150px"></img>
+			<h1>Selamat Datang, Hafizh !</h1>
+			<h4 style="color:#fff">Universitas Indonesia</h4>
 		</div>
 	</section>
 	<section id="main-content">
 		<div class="container">
 			<div class="row">
-				<div class="col-3">
-					<a href="/term" style="text-decoration:none;color:#fff">
-					<div class="card" style="background:#2f4479;padding:50px 0px 50px 0px">
-						<h5 class="text-center">Buat Term</h5>					
-					</div></a>
-				</div>
-				<div class="col-3">
-					<a href="/term" style="text-decoration:none;color:#fff">
-					<div class="card" style="background:#58bfbb;padding:50px 0px 50px 0px">
-						<h5 class="text-center">Atur Term</h5>						
+				<div class="col-4">
+					<div class="card" style="background:#2f4479;color:#fff;padding:20px">
+						<h3>DATA PENGGUNA</h3>
+						<hr class="background:#fff" />
+						<h5>Nama :</h5>
+						<p>Hafizh Rafizal Adnan</p>
+						<h5>Universitas :</h5>
+						<p>UI</p>
+						<h5>Fakultas :</h5>
+						<p>Fasilkom</p>
 					</div>
-					</a>
-				</div>
-				<div class="col-3">
-					<a href="/pilihKurikulum" style="text-decoration:none;color:#fff">
-					<div class="card" style="background:#58bfbb;padding:50px 0px 50px 0px">
-						<h5 class="text-center">Buat Kelas</h5>						
+					<br/>
+					<div class="card">
+						<h4>SHORTCUT</h4>
+						<a style="margin-bottom:5px" href="kelas" class="btn btn-danger">Kelas</a>
+						<a style="margin-bottom:5px" href="term" class="btn btn-primary">Term</a>
+						<a style="margin-bottom:5px" href="assignKurkulum" class="btn btn-warning">Atur Kurikulum</a>
 					</div>
-					</a>
 				</div>
-				<div class="col-3">
-					<a href="/pilihKurikulum" style="text-decoration:none;color:#fff">
-					<div class="card" style="background:#2f4479;padding:50px 0px 50px 0px">
-						<h5 class="text-center">Atur Kelas</h5>						
+				<div class="col-8">
+					<div class="card" style="padding:20px">
+						<h3>BERITA &amp; PENGUMUMAN</h3><hr/><br/>
+						<div class="news">
+							<h5>Tanggal Penting Pengajuan Cuti T.A Genap 17/18 dan Cicilan BP</h5>
+							<p style="text-align:justify;">Lorem ipsum dolor sit amet, maximus magna at, finibus nibh. Sed venenatis mauris felis, sit amet finibus lectus feugiat vulputate. Etiam faucibus diam tortor, et mattis urna sodales sed. Fusce eget pellentesque enim. Praesent porttitor maximus arcu, ut condimentum elit. Nulla facilisi. Aenean euismod bibendum porttitor. Vivamus luctus, arcu in finibus semper, nisl lectus sollicitudin neque, eget faucibus massa augue quis quam.</p>
+							<a href="#">Lihat Selengkapnya</a>
+							<hr/>
+						</div>
+						<div class="news">
+							<h5>Tanggal Penting Pengajuan Cuti T.A Genap 17/18 dan Cicilan BP</h5>
+							<p style="text-align:justify;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec consequat laoreet maximus. Vestibulum non libero euismod, maximus magna at, finibus nibh. Sed venenatis mauris felis, sit amet finibus lectus feugiat vulputate. Etiam faucibus diam tortor, et mattis urna sodales sed. Fusce eget pellentesque enim. Praesent porttitor maximus arcu, ut condimentum elit. Nulla facilisi. Aenean euismod bibendum porttitor. Vivamus luctus, arcu in finibus semper, nisl lectus sollicitudin neque, eget faucibus massa augue quis quam.</p>
+							<a href="#">Lihat Selengkapnya</a>
+							<hr/>
+						</div>
+						
+						<a href="#" class="btn btn-primary">Lebih Banyak</a>
+											
 					</div>
-					</a>
-				</div>		
-			</div>
-			<br/>
-			<div class="row">
-				<div class="col-3">	</div>
-				<div class="col-3">
-					<a href="/assignKurikulum" style="text-decoration:none;color:#fff">
-					<div class="card" style="background:#2f4479;padding:50px 0px 50px 0px">
-						<h5 class="text-center">Atur Kurikulum</h5>						
-					</div>
-					</a>
 				</div>
-				<div class="col-3">
-					<a href="/assignKurikulum" style="text-decoration:none;color:#fff">
-					<div class="card" style="background:#2f4479;padding:50px 0px 50px 0px">
-						<h5 class="text-center">Lihat Kurikulum</h5>						
-					</div>
-					</a>
-				</div>
-				<div class="col-3"></div>
-					
 			</div>
 		</div>
 
