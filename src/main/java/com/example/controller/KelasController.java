@@ -145,7 +145,6 @@ public class KelasController {
 	    		
 	    		List<MatkulModel> MatkulByKurikulum = kurikulumNow.getListMataKuliah();
 	    		
-	    		
 	    		String nama_matkul = "";
 	    		int idMatkul = kelas.getId_matkul();
 				for (int j = 0; j < MatkulByKurikulum.size(); j++) {
