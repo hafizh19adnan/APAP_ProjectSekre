@@ -109,7 +109,7 @@ public class TermController
         	termType= 3;
         }
         	
-        TermModel term = new TermModel (null, nomor, tglIrsStart, tglIrsEnd, isiIrsStart, isiIrsEnd, termType, termString);
+        TermModel term = new TermModel (null, nomor, tglIrsStart, tglIrsEnd, isiIrsStart, isiIrsEnd, termType, termString, null);
         log.info(""+term);
     	termDAO.addTerm(term);
 

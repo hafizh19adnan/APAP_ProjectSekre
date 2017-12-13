@@ -1,5 +1,6 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.1
+-- version 4.7.0
+-- https://www.phpmyadmin.net/
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
@@ -8,6 +9,7 @@
 -- PHP Version: 5.6.14
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 SET time_zone = "+00:00";
 
 

@@ -1,66 +1,37 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Term | Dashboard Aplikasi Sekretariat</title>
+<title>Kelas | Dashboard Aplikasi Sekretariat</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" />
-<link rel="stylesheet" type="text/css" href="/css/style.css" />
+<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="css/style.css" />
 <link rel="stylesheet" type="text/css"
 	href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.css" />
 </head>
 <body>
-	<header>
-		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-			<div class="container">
-				<a class="navbar-brand" href="#">FASILKOM UI</a>
-				<button class="navbar-toggler" type="button" data-toggle="collapse"
-					data-target="#navbarNavAltMarkup"
-					aria-controls="navbarNavAltMarkup" aria-expanded="false"
-					aria-label="Toggle navigation">
-					<span class="navbar-toggler-icon"></span>
-				</button>
-				<div class="collapse navbar-collapse pull-right"
-					id="navbarNavAltMarkup">
-					<div class="navbar-nav">
-						<a class="nav-item nav-link active" href="/dashboard">Dashboard
-							<span class="sr-only">(current)</span>
-						</a> <a class="nav-item nav-link active" href="/term">Term <span
-							class="sr-only">(current)</span></a> <a
-							class="nav-item nav-link active" href="/kelas">Kelas <span
-							class="sr-only">(current)</span></a> <a
-							class="nav-item nav-link active" href="/assignKurikulum">Kurikulum
-							<span class="sr-only">(current)</span>
-						</a> <a>
-			      	<form th:action = "@{/logout}" method = "post">
-						<input class="btn btn-danger" type = "submit" value = "Sign Out"  />
-					</form>
-					</a>
-
-					</div>
-				</div>
-			</div>
-		</nav>
-	</header>
-
+	<header th:replace="fragments/fragment :: header"></header>
 	<!--Jumbotron Section-->
 	<section id="header">
 		<div class="container">
-			<h1>Menu Term</h1>
-			<a href="#">Dashboard / Term / Detail</a>
+			<h1>Menu Kelas</h1>
+			<a href="#">Dashboard / Kelas / Detail</a>
 		</div>
 	</section>
 	<section id="main-content">
 		<div class="container">
 			<br />
-			<h3>Detail Term</h3>
+			<h3 class="text-center">Detail Kelas</h3>
 
 			<br></br>
 			<div class="row">
 				<div class="col">
-					<p th:text="'Id Term'"></p>
+					<p></p>
 				</div>
 				<div class="col">
-					<p th:text="${term.id}"></p>
+					<p th:text="'Nama Kelas'"></p>
+				</div>
+				<div class="col">
+					<p th:text="${kelas.nama_kelas}"></p>
 				</div>
 				<div class="col">
 					<p></p>
@@ -68,37 +39,13 @@
 			</div>
 			<div class="row">
 				<div class="col">
-					<p th:text="'Tahun Ajaran'"></p>
+					<p></p>
 				</div>
 				<div class="col">
-					<p th:text="${term.tahunAjaran}"></p>
-				</div>
-				<div class="col"></div>
-			</div>
-			<div class="row">
-				<div class="col">
-					<p th:text="'Awal Pengisian IRS'"></p>
+					<p th:text="'Mata Kuliah'"></p>
 				</div>
 				<div class="col">
-					<p th:text="${term.isiIrsStart}"></p>
-				</div>
-				<div class="col"></div>
-			</div>
-			<div class="row">
-				<div class="col">
-					<p th:text="'Akhir Pengisian IRS'"></p>
-				</div>
-				<div class="col">
-					<p th:text="${term.isiIrsEnd}"></p>
-				</div>
-				<div class="col"></div>
-			</div>
-			<div class="row">
-				<div class="col">
-					<p th:text="'Awal Term'"></p>
-				</div>
-				<div class="col">
-					<p th:text="${term.tglIrsStart}"></p>
+					<p th:text="${kelas.nama_matkul}"></p>
 				</div>
 				<div class="col">
 					<p></p>
@@ -106,10 +53,13 @@
 			</div>
 			<div class="row">
 				<div class="col">
-					<p th:text="'Akhir Term'"></p>
+					<p></p>
 				</div>
 				<div class="col">
-					<p th:text="${term.tglIrsEnd}"></p>
+					<p th:text="'Nama Dosen'"></p>
+				</div>
+				<div class="col">
+					<p th:text="${kelas.dosen}"></p>
 				</div>
 				<div class="col">
 					<p></p>
@@ -117,11 +67,125 @@
 			</div>
 			<div class="row">
 				<div class="col">
-					<a th:href="'/term/update/' + ${term.id}" class="btn btn-primary">Ubah Term   </a>
-					<a th:href="'/term/delete/' + ${term.id}" class="btn btn-danger">Hapus Term</a>
+					<p></p>
 				</div>
-				<div class="col"></div>
-								<div class="col"></div>				
+				<div class="col">
+					<p th:text="'Ruangan'"></p>
+				</div>
+				<div class="col">
+					<p th:text="${kelas.ruangan}"></p>
+				</div>
+				<div class="col">
+					<p></p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col">
+					<p></p>
+				</div>
+				<div class="col">
+					<p th:text="'Hari'"></p>
+				</div>
+				<div class="col">
+					<p th:text="${kelas.hari}"></p>
+				</div>
+				<div class="col">
+					<p></p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col">
+					<p></p>
+				</div>
+				<div class="col">
+					<p th:text="'Jam'"></p>
+				</div>
+				<div class="col">
+					<p th:text="${kelas.jam}"></p>
+				</div>
+				<div class="col">
+					<p></p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col">
+					<p></p>
+				</div>
+				<div class="col">
+					<p th:text="'Term'"></p>
+				</div>
+				<div class="col">
+					<p th:text="${kelas.nama_term}"></p>
+				</div>
+				<div class="col">
+					<p></p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col">
+					<p></p>
+				</div>
+				<div class="col">
+					<p th:text="'Kurikulum'"></p>
+				</div>
+				<div class="col">
+					<p th:text="${kelas.kode_kurikulum}"></p>
+				</div>
+				<div class="col">
+					<p></p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col">
+					<p></p>
+				</div>
+				<div class="col">
+					<p></p>
+				</div>
+				<div class="col">
+					<p></p>
+				</div>
+				<div class="col">
+					<p></p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col">
+					<p></p>
+				</div>
+				<div class="col">
+					<p></p>
+				</div>
+				<div class="col">
+					<p></p>
+				</div>
+				<div class="col">
+					<p></p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col">
+					<p></p>
+				</div>
+				<div class="col">
+					<p></p>
+				</div>
+				<div class="col">
+					<p>
+						<a th:href="'/kelas/update/' + ${kelas.id}" class="btn btn-success">Edit</a>
+					</p>
+				</div>
+				<div class="col">
+					<p>
+						<a th:href="'/kelas/delete/' + ${kelas.id}" class="btn btn-success">Delete</a>
+					</p>
+				</div>
+				<div class="col">
+					<p></p>
+				</div>
+				<div class="col">
+					<p></p>
+				</div>
 			</div>
 
 		</div>
@@ -142,4 +206,3 @@
 	<script type="text/javascript" src="js/app.js"></script>
 </body>
 </html>
-

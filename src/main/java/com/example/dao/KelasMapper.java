@@ -79,6 +79,15 @@ public interface KelasMapper {
 	@Delete("DELETE FROM kelas WHERE id = #{id}") 
 	void deleteKelas(String id);
 	
+	@Delete("DELETE FROM jadwal WHERE id = #{id}") 
+	void deleteJadwal(String id);
+	
+	@Select("SELECT * from jadwal where id = #{id}")
+	JadwalModel selectJadwal(String id); 
+	
+	@Update("UPDATE jadwal SET hari = #{hari}, jam_masuk = #{jam_masuk}, jam_keluar = #{jam_keluar} WHERE id = #{id}")
+	void updateJadwal(JadwalModel jadwal);
+	
 	@Insert("INSERT INTO kelas (id, nama_kelas, id_matkul, dosen, ruangan, id_term, kode_kurikulum) VALUES (null, #{nama_kelas}, #{id_matkul}, #{dosen}, #{ruangan}, #{id_term}, #{kode_kurikulum})")
     void createKelas (KelasModel kelas);
 	
@@ -90,11 +99,26 @@ public interface KelasMapper {
 	
 	
 	//asumsi, kurikulum gabisa diganti
-	@Update("UPDATE kelas SET nama_kelas = #{nama_kelas}, id_matkul = #{id_matkul}, dosen = #{dosen}, ruangan = #{ruangan}, id_term = #{id_term} WHERE id = #{id}")
+	@Update("UPDATE kelas SET nama_kelas = #{nama_kelas}, id_matkul = #{id_matkul}, dosen = #{dosen}, ruangan = #{ruangan} WHERE id = #{id}")
 	void updateKelas (KelasModel kelas);
 	
 	//method sementara, nunggu api dari kurikulum
 	@Select("SELECT * FROM matkul")
 	List<MatkulModel> selectMatkul();
+
+	@Select("select * from kelas where kode_kurikulum = #{kodeKurikulum} and id_term = #{id_term}")
+    @Results(value = {
+       		@Result(property="id", column="id"),	
+        	@Result(property="jadwal_masuk", column="id",
+        			javaType = List.class,
+        			many=@Many(select="getJadwalMasuk"))
+        })
+	List<KelasModel> getAllKelasByKuriTerm(@Param("kodeKurikulum") String kodeKurikulum, @Param("id_term") int id_term);
+
+	
+	
+//	@Select("select * from kelas where kode_kurikulum = #{kodeKurikulum} ")
+
+//	List<KelasModel> getKelasByKuriTerm(String kodeKurikulum, String nama_term);
 
 }
