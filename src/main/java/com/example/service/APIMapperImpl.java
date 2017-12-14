@@ -58,7 +58,7 @@ public class APIMapperImpl implements APIMapper {
 	public List<MahasiswaModel> allMahasiswa() {
 		// TODO Auto-generated method stub
 		
-		MahasiswaModel[] mahasiswa= restTemplate.getForObject("http://localhost:4040/api/getAllMahasiswa", MahasiswaModel[].class);
+		MahasiswaModel[] mahasiswa= restTemplate.getForObject("http://localhost:4040/rest/mahasiswa/getAll", MahasiswaModel[].class);
 		
 		return Arrays.asList(mahasiswa);
 	}

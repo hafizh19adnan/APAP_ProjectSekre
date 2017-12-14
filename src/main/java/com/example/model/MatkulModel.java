@@ -19,8 +19,7 @@ public class MatkulModel
 //    private List<MatkulModel> prasyarat;
     private String term;
 	private int is_wajib;
-    
-    
-  
-
+	private String id_universitas;
+	private String id_fakultas;
+	private String id_prodi;
 }
