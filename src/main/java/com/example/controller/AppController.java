@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.example.model.KelasModel;
 import com.example.model.KurikulumModel;
 import com.example.model.MatkulModel;
+import com.example.model.UserModel;
 import com.example.service.APIMapperImpl;
 import com.example.service.AppService;
 
@@ -31,6 +32,13 @@ public class AppController
 	@Autowired
 	APIMapperImpl api;
 	
+
+	public UserModel getUser() {
+		UserModel user = appDAO.getLoggedInUser(SecurityContextHolder.getContext().getAuthentication().getName());
+		System.out.println(user);
+		return user;
+	}
+	
 	@RequestMapping("/")
 	public String index() {
 		if(SecurityContextHolder.getContext().getAuthentication() != null &&  SecurityContextHolder.getContext().getAuthentication().isAuthenticated() && !(SecurityContextHolder.getContext().getAuthentication() 
@@ -41,20 +49,15 @@ public class AppController
 		}
 	}
 	
-	@RequestMapping("/dummy")
-	public String dummy(Model model) {
-		List<KurikulumModel> kurikulums = api.allKurikulum();
-		model.addAttribute("kurikulums",kurikulums);
-		return "dummy";
-	}
-	
 	@RequestMapping("/home")
 	public String home() {
 		return "index";
 	}
 	
 	@RequestMapping("/dashboard")
-	public String dashboard() {
+	public String dashboard(Model model) {
+		UserModel userData = getUser();
+		model.addAttribute("user",userData);
 		return "dashboard";
 	}
 	@RequestMapping("/login")
