@@ -32,7 +32,7 @@ public class KuriServiceDatabase implements KuriService{
 		List<KurikulumModel> toReturn = new ArrayList<>();
 		List<KurikulumModel> toCheck = apiMapper.allKurikulum();
 		for (int i = 0; i < toCheck.size(); i++) {
-			if(toCheck.get(i).getIdFakultas() == fakultas && toCheck.get(i).getIdUniversitas()==univ) {
+			if(toCheck.get(i).getId_fakultas() == fakultas && toCheck.get(i).getId_universitas()==univ) {
 				toReturn.add(toCheck.get(i));
 			}
 		}
@@ -106,13 +106,13 @@ public class KuriServiceDatabase implements KuriService{
 			
 			for (int i = 0; i < toAssign.size(); i++) {
 				
-				kuriMapper.updateAssign(toAssign.get(i), assigner.getKodeKurikulum());
+				kuriMapper.updateAssign(toAssign.get(i), assigner.getKode_kurikulum());
 			}
 			
 			
 		}else {
 			for (int i = 0; i < toAssign.size(); i++) {
-				kuriMapper.addAssign(toAssign.get(i), assigner.getKodeKurikulum());
+				kuriMapper.addAssign(toAssign.get(i), assigner.getKode_kurikulum());
 			}
 			
 		}
@@ -138,7 +138,7 @@ public class KuriServiceDatabase implements KuriService{
 		for (int i = 0; i < angkatanKuri.size(); i++) {
 			System.out.println(i);
 			if (angkatanKuri.get(i).getIdFakultas().equals(String.valueOf(fakultas)) && angkatanKuri.get(i).getIdUniv().equals(String.valueOf(univ))) {
-				String newKuri = apiMapper.kurikulumByKode(angkatanKuri.get(i).getKurikulum()).getNamaKurikulum();
+				String newKuri = apiMapper.kurikulumByKode(angkatanKuri.get(i).getKurikulum()).getNama_kurikulum();
 				System.out.println(newKuri);
 				angkatanKuri.get(i).setKurikulum(newKuri);
 				

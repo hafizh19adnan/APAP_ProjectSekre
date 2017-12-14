@@ -12,7 +12,7 @@
 	<!--Jumbotron Section-->
 	<section id="header">
 		<div class="container">
-			<h1 th:text="'Menu Kelas - Kurikulum ' + ${kuri.kodeKurikulum}"></h1>
+			<h1 th:text="'Menu Kelas - Kurikulum ' + ${kuri.kode_kurikulum}"></h1>
 			<a href="#">Dashboard / Kelas</a>
 		</div>
 	</section>
@@ -29,7 +29,7 @@
 					<div class="form-group">
 						<label>Mata Kuliah</label>
 						<select class="form-control" name="id_matkul">
-							<option  th:each="matkul, iterationsStatus:${matkul}" th:text="${matkul.namaMatkul}"  th:value="${matkul.idMatkul}"/>
+							<option  th:each="matkul, iterationsStatus:${matkul}" th:text="${matkul.nama_matkul}"  th:value="${matkul.id}"/>
 						</select>
 					</div>
 					
@@ -51,7 +51,7 @@
 					
 					<div class="form-group">
 						<label>Kurikulum</label>
-						<input readonly="true" type="text" name="kodeKurikulum"  th:value="${kuri.kodeKurikulum}" th:field="*{kodeKurikulum}" class="form-control" />
+						<input readonly="true" type="text" name="kodeKurikulum"  th:value="${kuri.kode_kurikulum}" th:field="*{kode_kurikulum}" class="form-control" />
 					</div>
 					
 				
