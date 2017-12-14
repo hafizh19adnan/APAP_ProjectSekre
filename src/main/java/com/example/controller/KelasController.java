@@ -112,8 +112,8 @@ public class KelasController {
 				
 				if (k+1 !=jadwal.size()) {
 					//tambah enter
-					stringBuilderHari.append("||");
-					stringBuilderJam.append("||");
+					stringBuilderHari.append('\n');
+					stringBuilderJam.append('\n');
 					
 				}
 			}
