@@ -11,5 +11,6 @@ import com.example.model.KelasModel;;
 
 public interface AppService
 {
+	UserModel getLoggedInUser(String name);
 	
 }

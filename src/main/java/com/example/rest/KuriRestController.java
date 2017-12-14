@@ -24,7 +24,7 @@ public class KuriRestController {
 	@RequestMapping("/getAngkatanKurikulumList")
 	public Object getAngkatanKurikulumList(){
 		
-			List<LinkStudentKuriModel> StudentKuri = kuriDAO.AllAngkatanKuri();
+			List<LinkStudentKuriModel> StudentKuri = kuriDAO.AllAngkatanKuriRest();
 			if(StudentKuri!=null) {
 				return new ResponseModel("200","success",StudentKuri);
 			}else {

@@ -12,18 +12,11 @@ import lombok.NoArgsConstructor;
 public class UserModel
 {
 	private int id;
-    private String nomor_kk;
-    private String is_tidak_berlaku;
-    private String alamat;
-    private String rt;
-    private String rw;
-    private String kelurahan;
-    private String kecamatan;
-    private String kota;
-    private String id_kelurahan;
-    private List<KelasModel> anggota_keluarga;
-    
-   
-        
+	private String nik;
+    private String username;
+    private int id_univ;
+    private int id_fakultas;
+    private String nama_univ;
+    private String nama_fakultas;
     
 }

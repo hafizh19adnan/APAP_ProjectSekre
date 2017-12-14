@@ -30,7 +30,7 @@
 								<option disabled="true" selected="true">Pilih Angkatan</option>
 							<div th:each="angkatan,iterationStatus: ${angkatan}">
 								
-								<option th:text="${angkatan}" th:value="${angkatan}">2017</option>
+								<option th:value="${angkatan.tahun}+'-'+${angkatan.id_prodi}" th:text="${angkatan.nama_angkatan_prodi}">2017</option>
 							</div>
 							</select>
 						</div>
