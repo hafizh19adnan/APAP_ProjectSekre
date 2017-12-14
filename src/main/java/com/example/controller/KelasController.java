@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -19,7 +20,10 @@ import com.example.model.KelasModel;
 import com.example.model.KurikulumModel;
 import com.example.model.MatkulModel;
 import com.example.model.TermModel;
+import com.example.model.UserModel;
+import com.example.service.AppService;
 import com.example.service.KelasService;
+import com.example.service.KuriService;
 import com.example.service.TermService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -32,10 +36,22 @@ public class KelasController {
     KelasService kelasDAO;
 	
 	@Autowired
+	KuriService KuriDAO;
+	
+	@Autowired
 	APIMapper apiMapperImpl;
 	
 	@Autowired
 	TermService termDAO;
+	
+	@Autowired
+	AppService appDAO;
+	
+	public UserModel getUser() {
+		UserModel user = appDAO.getLoggedInUser(SecurityContextHolder.getContext().getAuthentication().getName());
+		System.out.println(user);
+		return user;
+	}
 
 	@RequestMapping("/kelas")
 	public String view(Model model, Model modelMatkul, Model modelTerm, Model modelKuri,
@@ -356,7 +372,11 @@ public class KelasController {
     
     @RequestMapping(value="/pilihKurikulum")
     public String pilihKurikulum(Model model) {
-    	List<KurikulumModel> kurikulum = apiMapperImpl.allKurikulum();
+//    	List<KurikulumModel> kurikulum = apiMapperImpl.allKurikulum();
+    	
+    	UserModel loggedIn = getUser();
+    	
+    	List<KurikulumModel> kurikulum = KuriDAO.allKurikulum(loggedIn.getId_univ(), loggedIn.getId_fakultas());
     	model.addAttribute("kuri", kurikulum);
     	return "kelas-intro";
     }
