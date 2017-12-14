@@ -13,7 +13,7 @@
 		<div class="container">
 			<img src="img/person-flat.png" width="150px"></img>
 			<h1 th:text="'Selamat Datang,'+${user.username}+' !'"></h1>
-			<h4 style="color:#fff">Universitas Indonesia</h4>
+			<h4 style="color:#fff" th:text="${user.nama_univ}"></h4>
 		</div>
 	</section>
 	<section id="main-content">
