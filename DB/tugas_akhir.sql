@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 12, 2017 at 06:42 AM
--- Server version: 10.1.8-MariaDB
--- PHP Version: 5.6.14
+-- Generation Time: Dec 14, 2017 at 11:43 AM
+-- Server version: 10.1.13-MariaDB
+-- PHP Version: 5.6.23
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -51,7 +51,19 @@ INSERT INTO `jadwal` (`id`, `id_kelas`, `hari`, `jam_masuk`, `jam_keluar`) VALUE
 (10, 6, 'Rabu', '12:00:00', '13:00:00'),
 (11, 7, 'Kamis', '09:00:00', '10:00:00'),
 (12, 7, 'Jumat', '08:00:00', '10:00:00'),
-(13, 8, 'Selasa', '08:00:00', '10:00:00');
+(13, 8, 'Selasa', '08:00:00', '10:00:00'),
+(14, 18, 'Senin', '01:00:00', '02:00:00'),
+(15, 19, 'Senin', '01:00:00', '02:00:00'),
+(16, 20, 'Senin', '12:59:00', '01:01:00'),
+(17, 20, 'Selasa', '01:00:00', '02:00:00'),
+(18, 21, 'Senin', '12:59:00', '01:01:00'),
+(19, 22, 'Senin', '11:11:00', '14:22:00'),
+(20, 23, 'Senin', '01:00:00', '02:00:00'),
+(22, 25, 'Senin', '11:11:00', '12:22:00'),
+(23, 25, 'Selasa', '12:21:00', '14:22:00'),
+(24, 26, 'Senin', '11:11:00', '12:22:00'),
+(25, 26, 'Selasa', '12:21:00', '14:22:00'),
+(26, 27, 'Senin', '00:12:00', '14:22:00');
 
 -- --------------------------------------------------------
 
@@ -74,23 +86,17 @@ CREATE TABLE `kelas` (
 --
 
 INSERT INTO `kelas` (`id`, `nama_kelas`, `id_matkul`, `dosen`, `ruangan`, `id_term`, `kode_kurikulum`) VALUES
-(1, 'Sister A', 1, 'Harry Budi Santoso, Phd', 'R. 2303', 1, 'CSUI2015'),
-(2, 'Sister B', 1, 'Harry Budi Santoso, Phd', 'R. 2301', 1, 'CSUI2015'),
-(3, 'Sister C', 1, 'Harry Budi Santoso, Phd', 'R. 2302', 1, 'CSUI2015'),
-(4, 'APAP A', 2, 'Qorib Munajat', 'R. 2302', 1, 'CSUI2015'),
-(5, 'APAP B', 2, 'Samuel Louvan', 'R. 2301', 1, 'CSUI2015'),
-(6, 'APAP C', 2, 'Qorib Munajat', 'R. 2303', 1, 'CSUI2015'),
-(7, 'Anaperancis A', 3, 'Nur Fitriah', 'R. 2301', 1, 'CSUI2015'),
-(8, 'Anaperancis B', 3, 'Nur Fitriah', 'R. 2304', 1, 'CSUI2015'),
-(9, 'Anaperancis C', 3, 'Zainal Arifin', 'R. 2303', 1, 'CSUI2015'),
-(10, 'Manpro TI A', 3, 'Ave Pinem', 'R. 2305', 1, 'CSUI2015'),
-(11, 'Manpro TI B', 3, 'Indra Budi', 'R. 2303', 1, 'CSUI2015'),
-(12, 'DDP A', 3, 'Hadaiq Rolis S', 'R. 2302', 1, 'CSUI2015'),
-(13, 'DDP B', 3, 'Hadaiq Rolis S', 'R. 2301', 1, 'CSUI2015'),
-(14, 'DDP C', 3, 'Alfan Farizki', 'R. 2305', 1, 'CSUI2015'),
-(15, 'DDP D', 3, 'Denny', 'R. 2304', 1, 'CSUI2015'),
-(16, 'DDP E', 3, 'Lim Yohanes', 'R. 2302', 1, 'CSUI2015'),
-(17, 'PPSI A', 3, 'Iik Wilarso', 'R. 2301', 1, 'CSUI2015');
+(1, 'DDP 1 A', 1, 'Harry Budi Santoso, Phd', 'R. 2303', 1, 'CSUI2011'),
+(2, 'DDP 1 B', 1, 'Harry Budi Santoso, Phd', 'R. 2301', 1, 'CSUI2011'),
+(3, 'DDP 1 C', 1, 'Harry Budi Santoso, Phd', 'R. 2302', 1, 'CSUI2011'),
+(4, 'DDP 2 A', 2, 'Qorib Munajat', 'R. 2302', 1, 'CSUI2011'),
+(5, 'DDP 2 B', 2, 'Samuel Louvan', 'R. 2301', 1, 'CSUI2011'),
+(6, 'DDP 2 C', 2, 'Qorib Munajat', 'R. 2303', 1, 'CSUI2011'),
+(7, 'SDA A', 3, 'Nur Fitriah', 'R. 2301', 1, 'CSUI2011'),
+(8, 'SDA B', 3, 'Nur Fitriah', 'R. 2304', 1, 'CSUI2011'),
+(9, 'SDA C', 3, 'Zainal Arifin', 'R. 2303', 1, 'CSUI2011'),
+(27, 'GAMTEK A', 4, 'Bung Denny', '2307', 1, 'FTUI2012'),
+(28, 'Akuntansi Dasar 1', 7, 'Ave Adriana', '2404', 1, 'FEUI2013');
 
 -- --------------------------------------------------------
 
@@ -238,12 +244,12 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `jadwal`
 --
 ALTER TABLE `jadwal`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 --
 -- AUTO_INCREMENT for table `kelas`
 --
 ALTER TABLE `kelas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 --
 -- AUTO_INCREMENT for table `term`
 --
