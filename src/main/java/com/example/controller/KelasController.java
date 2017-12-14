@@ -300,7 +300,7 @@ public class KelasController {
             @RequestParam(value = "id_term", required = false) int id_term,
             @RequestParam(value = "jam_masuk", required = false)  List<String> jam_masuk,
             @RequestParam(value = "jam_selesai", required = false)  List<String> jam_selesai,
-            @RequestParam(value = "kodeKurikulum", required = false) String kode_kurikulum)
+            @RequestParam(value = "kode_kurikulum", required = false) String kode_kurikulum)
     {
     	 TermModel term = termDAO.selectTerm(id_term);
     	 String tahun_term = term.getTahunAjaran();
