@@ -31,7 +31,7 @@
 					<div class="form-group">
 						<label>Mata Kuliah</label>
 						<select class="form-control" name="id_matkul">
-							<option  th:each="matkul, iterationsStatus:${matkul}" th:text="${matkul.namaMatkul}"  th:value="${matkul.idMatkul}"/>
+							<option  th:each="matkul, iterationsStatus:${matkul}" th:text="${matkul.nama_matkul}"  th:value="${matkul.id}"/>
 						</select>
 					</div>
 					<div class="form-group">
@@ -80,7 +80,6 @@
 						
 					</div>
 					<br/>
-					<button id="button-add-jadwal" class="btn btn-success">+ Tambah Jadwal</button>
 					<hr/>
 					
 					<br/>
