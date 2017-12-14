@@ -40,7 +40,7 @@ public class APIMapperImpl implements APIMapper {
 //		Dummy Lokal
 //		ResponseModel stuff = restTemplate.getForObject("http://localhost:8090/api/getAllKurikulum", ResponseModel.class);
 //		RealAPI
-		ResponseModel stuff = restTemplate.getForObject("http://localhost:8081/api/getAllKurikulum", ResponseModel.class);
+		ResponseModel stuff = restTemplate.getForObject("http://localhost:6969/api/getAllKurikulum", ResponseModel.class);
 		
 		ArrayList<LinkedHashMap> kurikulum = (ArrayList<LinkedHashMap>) stuff.getResult();
 		System.out.println(kurikulum.get(0));
@@ -58,10 +58,9 @@ public class APIMapperImpl implements APIMapper {
 	public List<MahasiswaModel> allMahasiswa() {
 		// TODO Auto-generated method stub
 		
-		//Dummy
-//		MahasiswaModel[] mahasiswa= restTemplate.getForObject("http://localhost:8090/api/getAllMahasiswa", MahasiswaModel[].class);
-        //RealAPI
+
 		MahasiswaModel[] mahasiswa= restTemplate.getForObject("http://localhost:4040/rest/mahasiswa/getAll", MahasiswaModel[].class);
+		
 		return Arrays.asList(mahasiswa);
 	}
 
@@ -72,7 +71,7 @@ public class APIMapperImpl implements APIMapper {
 		// Dummy Lokal
 //		ResponseModel stuff = restTemplate.getForObject("http://localhost:8090/api/getKurikulumByKode?kodeKurikulum="+Kode, ResponseModel.class);
 		// RealAPI
-		ResponseModel stuff = restTemplate.getForObject("http://localhost:8081/api/getKurikulum?kodeKurikulum="+Kode, ResponseModel.class);
+		ResponseModel stuff = restTemplate.getForObject("http://localhost:6969/api/getKurikulum?kodeKurikulum="+Kode, ResponseModel.class);
 		
 		LinkedHashMap kurikulum = (LinkedHashMap) stuff.getResult();
 		

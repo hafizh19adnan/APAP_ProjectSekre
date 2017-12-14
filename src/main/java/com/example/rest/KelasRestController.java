@@ -40,14 +40,19 @@ public class KelasRestController {
 			String nama_term = "";
 			String nama_kelas = classes.get(i).getNama_kelas();
 			String[] namakls = nama_kelas.split(" ");
-			String nama_matkul = namakls[0];
-			classes.get(i).setNama_matkul(nama_matkul);
+			if (namakls.length == 3) {
+				String nama_matkul = namakls[0] + " " + namakls[1];
+				classes.get(i).setNama_matkul(nama_matkul);
+			} else {
+				String nama_matkul = namakls[0];
+				classes.get(i).setNama_matkul(nama_matkul);
+			}
 			for (int j = 0; j < allTerm.size(); j++) {
 				int id = allTerm.get(j).getId();
-				String tahun = ""+ allTerm.get(j).getTahunAjaran();
-				String tipe = ""+ allTerm.get(j).getTermType();
-				if (id==id_term) {
-					nama_term = tahun+"-"+tipe;
+				String tahun = "" + allTerm.get(j).getTahunAjaran();
+				String tipe = "" + allTerm.get(j).getTermType();
+				if (id == id_term) {
+					nama_term = tahun + "-" + tipe;
 				}
 			}
 			classes.get(i).setNama_term(nama_term);
@@ -68,20 +73,25 @@ public class KelasRestController {
 
 		List<TermModel> allTerm = termService.selectAllTerms();
 		int id_term = kelas.getId_term();
-		
+
 		String nama_kelas = kelas.getNama_kelas();
 		String[] namakls = nama_kelas.split(" ");
-		String nama_matkul = namakls[0];
-		kelas.setNama_matkul(nama_matkul);
-		
+
+		if (namakls.length == 3) {
+			String nama_matkul = namakls[0] + " " + namakls[1];
+			kelas.setNama_matkul(nama_matkul);
+		} else {
+			String nama_matkul = namakls[0];
+			kelas.setNama_matkul(nama_matkul);
+		}
 		String nama_term = "";
-		
+
 		for (int j = 0; j < allTerm.size(); j++) {
 			int id_all_term = allTerm.get(j).getId();
-			String tahun = ""+ allTerm.get(j).getTahunAjaran();
-			String tipe = ""+ allTerm.get(j).getTermType();
-			if (id_all_term==id_term) {
-				nama_term = tahun+"-"+tipe;
+			String tahun = "" + allTerm.get(j).getTahunAjaran();
+			String tipe = "" + allTerm.get(j).getTermType();
+			if (id_all_term == id_term) {
+				nama_term = tahun + "-" + tipe;
 			}
 		}
 		kelas.setNama_term(nama_term);
@@ -118,8 +128,13 @@ public class KelasRestController {
 			kelasByKuriTerm.get(i).setNama_term(nama_term1);
 			String nama_kelas = kelasByKuriTerm.get(i).getNama_kelas();
 			String[] namakls = nama_kelas.split(" ");
-			String nama_matkul = namakls[0];
-			kelasByKuriTerm.get(i).setNama_matkul(nama_matkul);
+			if(namakls.length == 3) {
+				String nama_matkul = namakls[0] + " " + namakls[1];
+				kelasByKuriTerm.get(i).setNama_matkul(nama_matkul);
+			} else {
+				String nama_matkul = namakls[0];
+				kelasByKuriTerm.get(i).setNama_matkul(nama_matkul);
+			}
 		}
 		if (kelasByKuriTerm.size() != 0) {
 			return new ResponseModel("200", "success", kelasByKuriTerm);
