@@ -7,20 +7,8 @@
 	<link rel="stylesheet" type="text/css" href="css/style.css"/>
 </head>
 <body>
-	<header>
-	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-		<div class="container">
-			<a class="navbar-brand" href="#">FASILKOM UI</a>
-			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-			<div class="collapse navbar-collapse pull-right" id="navbarNavAltMarkup">
-			    <div class="navbar-nav pull-right">
-			      <a class="nav-item nav-link active" href="/">Beranda <span class="sr-only">(current)</span></a>
-			    </div>
-			</div>	
-		</div>
-	</nav>
-	</header>	
-<div th:if = "${param.error}" >
+	<header th:replace="fragments/fragment :: header"></header>	
+	<div th:if = "${param.error}" >
 		Invalid username and password.
 	</div>
 	<div th:if = "${param.logout}" >
@@ -29,7 +17,7 @@
 	<!--Jumbotron Section-->
 	<section id="jumbotron">
 		<div class="container">
-			<h1>APLIKASI SEKRETARIAT <br/> FAKULTAS ILMU KOMPUTER UI</h1>
+			<h1>APLIKASI SEKRETARIAT <br/>ADMINISTRASI UNIVERSITAS</h1>
 			<hr/>
 			<div class="row">
 				<div class="col-4">

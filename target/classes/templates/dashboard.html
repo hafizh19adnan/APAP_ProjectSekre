@@ -12,7 +12,7 @@
 	<section id="header">
 		<div class="container">
 			<img src="img/person-flat.png" width="150px"></img>
-			<h1>Selamat Datang, Hafizh !</h1>
+			<h1 th:text="'Selamat Datang,'+${user.username}+' !'"></h1>
 			<h4 style="color:#fff">Universitas Indonesia</h4>
 		</div>
 	</section>
@@ -24,18 +24,18 @@
 						<h3>DATA PENGGUNA</h3>
 						<hr class="background:#fff" />
 						<h5>Nama :</h5>
-						<p>Hafizh Rafizal Adnan</p>
+						<p th:text="${user.username}"></p>
 						<h5>Universitas :</h5>
-						<p>UI</p>
+						<p th:text="${user.nama_univ}">UI</p>
 						<h5>Fakultas :</h5>
-						<p>Fasilkom</p>
+						<p th:text="${user.nama_fakultas}">Fasilkom</p>
 					</div>
 					<br/>
 					<div class="card">
 						<h4>SHORTCUT</h4>
 						<a style="margin-bottom:5px" href="kelas" class="btn btn-danger">Kelas</a>
 						<a style="margin-bottom:5px" href="term" class="btn btn-primary">Term</a>
-						<a style="margin-bottom:5px" href="assignKurkulum" class="btn btn-warning">Atur Kurikulum</a>
+						<a style="margin-bottom:5px" href="assignKurikulum" class="btn btn-warning">Atur Kurikulum</a>
 					</div>
 				</div>
 				<div class="col-8">

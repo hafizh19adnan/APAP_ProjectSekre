@@ -39,11 +39,12 @@ public class KelasController {
 
 	@RequestMapping("/kelas")
 	public String view(Model model, Model modelMatkul, Model modelTerm, Model modelKuri,
-			@RequestParam(value = "kode_kurikulum", required = true) String kode_kurikulum) {
+			@RequestParam(value = "kode_kurikulum",required=false) String kode_kurikulum) {
 		
-		//nanti dapet dari page pilih kurikulum
-		//ini sementara dulu
-
+		if(kode_kurikulum==null) {
+			return "redirect:/pilihKurikulum";
+		}
+		
 		KurikulumModel kuri = new KurikulumModel();
 		kuri.setKodeKurikulum(kode_kurikulum);
 		System.out.println("inikode+"+kode_kurikulum);
@@ -111,8 +112,8 @@ public class KelasController {
 				
 				if (k+1 !=jadwal.size()) {
 					//tambah enter
-					stringBuilderHari.append("||");
-					stringBuilderJam.append("||");
+					stringBuilderHari.append('\n');
+					stringBuilderJam.append('\n');
 					
 				}
 			}
@@ -350,7 +351,8 @@ public class KelasController {
     //	String nama_matkul = matkul.getNamaMatkul();
     //	kelas.setNama_matkul(nama_matkul);
         kelasDAO.createKelas(kelas);
-    } */
+    } 
+*/
     
     @RequestMapping(value="/pilihKurikulum")
     public String pilihKurikulum(Model model) {
@@ -361,6 +363,6 @@ public class KelasController {
     
     @RequestMapping(value="/submitPilihKurikulum")
     public String submitPilihKurikulum(Model model,@RequestParam(value = "kode_kurikulum", required = false) String kode_kurikulum) {
-      	return "redirect:/kelas/"+kode_kurikulum;
+      	return "redirect:/kelas?kode_kurikulum="+kode_kurikulum;
     }
 }

@@ -22,3 +22,5 @@ nbbuild/
 dist/
 nbdist/
 .nb-gradle/
+DB/tugas_akhir.sql
+target/classes/META-INF/maven/com.example/APAPTutorial04/pom.properties
