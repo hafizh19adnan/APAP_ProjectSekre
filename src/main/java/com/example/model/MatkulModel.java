@@ -11,15 +11,14 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class MatkulModel
 {
-	private int idMatkul;
-	private String kodeMatkul;
-	private String namaMatkul;
-    private int jumlahSKS;
-    private String idKurikulum;
+	private int id;
+	private String kode_matkul;
+	private String nama_matkul;
+    private int jumlah_sks;
     private String deskripsi;
-    private List<MatkulModel> prasyarat;
+//    private List<MatkulModel> prasyarat;
     private String term;
-	private boolean idWajib;
+	private int is_wajib;
     
     
   

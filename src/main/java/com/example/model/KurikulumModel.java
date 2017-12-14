@@ -10,14 +10,15 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class KurikulumModel {
-	private int idKurikulum;
-	private String kodeKurikulum;
-	private String namaKurikulum;
-	private int jumlahSKSWajib;
-	private int jumlahSKSPilihan;
-	private int	idUniversitas;
-	private int idFakultas;
-	private int idProdi;
-	private List<MatkulModel> listMataKuliah;
+	private int id;
+	private String kode_kurikulum;
+	private String nama_kurikulum;
+	private int jumlahSks;
+	private int jumlahSksWajib;
+	private int jumlahSksPilihan;
+	private int	id_universitas;
+	private int id_fakultas;
+	private int id_prodi;
+	private List<MatkulModel> matakuliah;
 	//model menunggu API
 }

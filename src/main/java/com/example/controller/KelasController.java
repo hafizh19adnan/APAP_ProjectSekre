@@ -46,7 +46,7 @@ public class KelasController {
 		}
 		
 		KurikulumModel kuri = new KurikulumModel();
-		kuri.setKodeKurikulum(kode_kurikulum);
+		kuri.setKode_kurikulum(kode_kurikulum);
 		System.out.println("inikode+"+kode_kurikulum);
 		modelKuri.addAttribute("kuri", kuri);
 
@@ -56,12 +56,12 @@ public class KelasController {
 		KurikulumModel kurikulumNow = null;
 		
 		for (int i = 0; i < kurikulum.size(); i++) {
-			if (kurikulum.get(i).getKodeKurikulum().equals(kode_kurikulum)) {
+			if (kurikulum.get(i).getKode_kurikulum().equals(kode_kurikulum)) {
 				kurikulumNow = kurikulum.get(i);
 			}
 		}
 		
-		List<MatkulModel> MatkulByKurikulum = kurikulumNow.getListMataKuliah();
+		List<MatkulModel> MatkulByKurikulum = kurikulumNow.getMatakuliah();
 		modelMatkul.addAttribute("matkul", MatkulByKurikulum);
 		List<TermModel> allTerm = termDAO.selectAllTerms();
 		
@@ -94,8 +94,8 @@ public class KelasController {
 	    	 kelasByKurikulum.get(i).setNama_term(nama_term);
 			int idMatkul = kelasNow.getId_matkul();
 			for (int j = 0; j < MatkulByKurikulum.size(); j++) {
-				if (idMatkul == MatkulByKurikulum.get(j).getIdMatkul()) {
-					nama_matkul = MatkulByKurikulum.get(j).getNamaMatkul();
+				if (idMatkul == MatkulByKurikulum.get(j).getId()) {
+					nama_matkul = MatkulByKurikulum.get(j).getNama_matkul();
 					kelasByKurikulum.get(i).setNama_matkul(nama_matkul);
 				}
 			}
@@ -149,18 +149,18 @@ public class KelasController {
 	    		KurikulumModel kurikulumNow = null;
 	    		
 	    		for (int i = 0; i < kurikulum.size(); i++) {
-	    			if (kurikulum.get(i).getKodeKurikulum().equals(kode_kurikulum)) {
+	    			if (kurikulum.get(i).getKode_kurikulum().equals(kode_kurikulum)) {
 	    				kurikulumNow = kurikulum.get(i);
 	    			}
 	    		}
 	    		
-	    		List<MatkulModel> MatkulByKurikulum = kurikulumNow.getListMataKuliah();
+	    		List<MatkulModel> MatkulByKurikulum = kurikulumNow.getMatakuliah();
 	    		
 	    		String nama_matkul = "";
 	    		int idMatkul = kelas.getId_matkul();
 				for (int j = 0; j < MatkulByKurikulum.size(); j++) {
-					if (idMatkul == MatkulByKurikulum.get(j).getIdMatkul()) {
-						nama_matkul = MatkulByKurikulum.get(j).getNamaMatkul();
+					if (idMatkul == MatkulByKurikulum.get(j).getId()) {
+						nama_matkul = MatkulByKurikulum.get(j).getNama_matkul();
 						kelas.setNama_matkul(nama_matkul);
 					}
 				}
@@ -242,12 +242,12 @@ public class KelasController {
   		model.addAttribute("kuri", kode_kurikulum);
   		model.addAttribute("hari", "asdasdad");
   		for (int i = 0; i < kurikulum.size(); i++) {
-  			if (kurikulum.get(i).getKodeKurikulum().equals(kode_kurikulum)) {
+  			if (kurikulum.get(i).getKode_kurikulum().equals(kode_kurikulum)) {
   				kurikulumNow = kurikulum.get(i);
   			}
   		}
   		
-  		List<MatkulModel> MatkulByKurikulum = kurikulumNow.getListMataKuliah();
+  		List<MatkulModel> MatkulByKurikulum = kurikulumNow.getMatakuliah();
   		modelMatkul.addAttribute("matkul", MatkulByKurikulum);
   		List<TermModel> allTerm = termDAO.selectAllTerms();
   		
