@@ -38,6 +38,10 @@ public class KelasRestController {
 		for (int i = 0; i < classes.size(); i++) {
 			int id_term = classes.get(i).getId_term();
 			String nama_term = "";
+			String nama_kelas = classes.get(i).getNama_kelas();
+			String[] namakls = nama_kelas.split(" ");
+			String nama_matkul = namakls[0];
+			classes.get(i).setNama_matkul(nama_matkul);
 			for (int j = 0; j < allTerm.size(); j++) {
 				int id = allTerm.get(j).getId();
 				String tahun = ""+ allTerm.get(j).getTahunAjaran();
@@ -58,13 +62,20 @@ public class KelasRestController {
 	}
 
 	@RequestMapping("/getKelas/{id}")
-	public KelasModel getKelasByID(@PathVariable(value = "id") String id) {
+	public Object getKelasByID(@PathVariable(value = "id") String id) {
 
 		KelasModel kelas = kelasService.getKelasById(id);
 
 		List<TermModel> allTerm = termService.selectAllTerms();
 		int id_term = kelas.getId_term();
+		
+		String nama_kelas = kelas.getNama_kelas();
+		String[] namakls = nama_kelas.split(" ");
+		String nama_matkul = namakls[0];
+		kelas.setNama_matkul(nama_matkul);
+		
 		String nama_term = "";
+		
 		for (int j = 0; j < allTerm.size(); j++) {
 			int id_all_term = allTerm.get(j).getId();
 			String tahun = ""+ allTerm.get(j).getTahunAjaran();
@@ -74,7 +85,11 @@ public class KelasRestController {
 			}
 		}
 		kelas.setNama_term(nama_term);
-		return kelas;
+		if (kelas != null) {
+			return new ResponseModel("200", "success", kelas);
+		} else {
+			return new ResponseErrorModel("404", "Kelas Not Found");
+		}
 	}
 
 	@RequestMapping("/getAllKelasByKuriTerm")
@@ -101,6 +116,10 @@ public class KelasRestController {
 		List<KelasModel> kelasByKuriTerm = kelasService.getAllKelasByKuriTerm(kode_kurikulum1, id_term);
 		for (int i = 0; i < kelasByKuriTerm.size(); i++) {
 			kelasByKuriTerm.get(i).setNama_term(nama_term1);
+			String nama_kelas = kelasByKuriTerm.get(i).getNama_kelas();
+			String[] namakls = nama_kelas.split(" ");
+			String nama_matkul = namakls[0];
+			kelasByKuriTerm.get(i).setNama_matkul(nama_matkul);
 		}
 		if (kelasByKuriTerm.size() != 0) {
 			return new ResponseModel("200", "success", kelasByKuriTerm);
