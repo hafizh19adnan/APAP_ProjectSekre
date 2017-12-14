@@ -53,7 +53,10 @@ public class AppController
 	public String home() {
 		return "index";
 	}
-	
+	@RequestMapping("/portal")
+	public String portal() {
+		return "portal";
+	}
 	@RequestMapping("/dashboard")
 	public String dashboard(Model model) {
 		UserModel userData = getUser();
